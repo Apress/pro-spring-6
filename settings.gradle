@@ -1,0 +1,29 @@
+pluginManagement {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2" }
+        maven { url "https://repo.spring.io/release" }
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/libs-snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+        maven { url "https://repo.spring.io/libs-milestone-local" }
+        gradlePluginPortal()
+    }
+}
+
+rootProject.name = 'pro-spring-6'
+
+include 'chapter02'
+
+println(' This project is a collection of simple code samples. It is meant to be used together with the ' +
+        '"Pro Spring 6"  book' +
+        ' published by Apress in order to learn and practice Spring.')
+
+//we check if the modules have gradle configuration files
+rootProject.children.each { project ->
+    project.buildFileName = "${project.name}.gradle"
+    assert project.projectDir.isDirectory()
+    assert project.buildFile.exists()
+    assert project.buildFile.isFile()
+}

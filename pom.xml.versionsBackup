@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.apress.prospring6</groupId>
+    <artifactId>pro-spring-6</artifactId>
+    <version>6.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>Pro Spring 6</name>
+    <description>This project is a collection of simple code samples. It is meant to be used together with the "Pro Spring 6" book,
+        published by Apress in order to learn and practice Spring. </description>
+
+    <properties>
+        <spring-boot.version>3.1.1</spring-boot.version>
+
+        <!-- Java version for non-Boot projects -->
+        <maven.compiler.source>19</maven.compiler.source>
+        <maven.compiler.target>19</maven.compiler.target>
+        <!--  Java version for Boot projects-->
+        <java.version>19</java.version>
+
+        <versions-maven-plugin.version>2.16.0</versions-maven-plugin.version>
+        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+        <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
+        <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
+        <jupiter.version>5.9.3</jupiter.version>
+
+        <!-- utils -->
+        <commons-lang3.version>3.12.0</commons-lang3.version>
+        <mockito.version>2.0.2-beta</mockito.version>
+        <testcontainers.version>1.17.3</testcontainers.version>
+        <jakarta.annotation.version>2.1.0</jakarta.annotation.version>
+        <jakarta.injectApi.version>2.0.1</jakarta.injectApi.version>
+        <groovy.version>3.0.11</groovy.version>
+        <commons.dbcp2.version>2.9.0</commons.dbcp2.version>
+        <mariadb.client.version>3.0.7</mariadb.client.version>
+        <hikari.version>5.0.1</hikari.version>
+        <hibernate.version>6.1.1.Final</hibernate.version>
+        <querydsl.version>5.0.0</querydsl.version>
+
+        <!-- others -->
+        <h2.version>2.1.214</h2.version>
+        <jooq.version>3.17.2</jooq.version>
+        <aspectj.version>1.9.9.1</aspectj.version>
+        <logback.version>1.2.11</logback.version> <!-- Required because of https://jira.qos.ch/browse/LOGBACK-1591-->
+        <slf4j.version>1.7.36</slf4j.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <modules>
+     <module>chapter02</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+    <defaultGoal>clean install</defaultGoal>
+    <plugins>
+        <plugin>
+            <!-- this plugin provides a task to determine which dependencies have updates -->
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>versions-maven-plugin</artifactId>
+            <version>${versions-maven-plugin.version}</version>
+        </plugin>
+    </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-shade-plugin</artifactId>
+                    <version>${maven-shade-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire-plugin.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.junit.jupiter</groupId>
+                            <artifactId>junit-jupiter-engine</artifactId>
+                            <version>${jupiter.version}</version>
+                        </dependency>
+                    </dependencies>
+                    <configuration>
+                        <argLine>--add-opens java.base/java.lang=ALL-UNNAMED</argLine>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>spring-releases</id>
+            <url>https://repo.spring.io/release</url>
+        </repository>
+        <repository>
+            <id>spring-snapshot</id>
+            <url>https://repo.spring.io/snapshot</url>
+        </repository>
+        <repository>
+            <id>spring-milestone</id>
+            <url>https://repo.spring.io/milestone</url>
+        </repository>
+        <repository>
+            <id>spring-libs-snapshot</id>
+            <url>https://repo.spring.io/libs-snapshot</url>
+        </repository>
+        <repository>
+            <id>spring-libs-milestone</id>
+            <url>https://repo.spring.io/libs-milestone-local</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-releases</id>
+            <url>https://repo.spring.io/release</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-snapshot</id>
+            <url>https://repo.spring.io/snapshot</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-milestone</id>
+            <url>https://repo.spring.io/milestone</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-libs-snapshot</id>
+            <url>https://repo.spring.io/libs-snapshot</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-libs-milestone</id>
+            <url>https://repo.spring.io/libs-milestone-local</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+</project>

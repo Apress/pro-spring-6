@@ -1,0 +1,113 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2" }
+        maven { url "https://repo.spring.io/release" }
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/libs-snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+        maven { url "https://repo.spring.io/libs-milestone-local" }
+    }
+
+    dependencies {
+        classpath 'io.spring.gradle:dependency-management-plugin:1.1.1'
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.42.0' // https://github.com/ben-manes/gradle-versions-plugin/
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:3.1.1'
+    }
+}
+
+
+ext {
+    bootProjects = subprojects.findAll { ( it.name.endsWith('-boot')) }
+
+    lang3Version = "3.12.0"
+    mockitoVersion = "2.0.2-beta"
+    testcontainersVersion = "1.17.3"
+    jakartaAnnotationVersion = "2.1.0"
+    jakartaInjectApiVersion = "2.0.1"
+    groovyVersion = "3.0.11"
+    dbcp2Version = "2.9.0"
+    mariadbClientVersion = "3.0.7"
+    hikariVersion = "5.0.1"
+    hibernateVersion = "6.1.1.Final"
+    querydslVersion = "5.0.0"
+    h2Version = "2.1.214"
+    jooqVersion = "3.17.2"
+    aspectjVersion = "1.9.9.1"
+    logbackVersion = "1.2.11"
+    slf4jVersion = "1.7.36"
+}
+
+defaultTasks 'clean', 'build'
+
+
+configure(allprojects) { project ->
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'java'
+    apply plugin: 'com.github.ben-manes.versions'
+
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2" }
+        maven { url "https://repo.spring.io/release" }
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/libs-snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+        maven { url "https://repo.spring.io/libs-milestone" }
+    }
+
+    version '6.0-SNAPSHOT'
+
+    def commonCompilerArgs =
+            ["-Xlint:serial", "-Xlint:cast", "-Xlint:classfile", "-Xlint:dep-ann",
+             "-Xlint:divzero", "-Xlint:empty", "-Xlint:finally", "-Xlint:overrides",
+             "-Xlint:path", "-Xlint:processing", "-Xlint:static", "-Xlint:try", "-Xlint:-options"]
+
+    compileJava.options*.compilerArgs = commonCompilerArgs +
+            ["-Xlint:varargs", "-Xlint:fallthrough", "-Xlint:rawtypes",
+             "-Xlint:deprecation", "-Xlint:unchecked"/*, "-Werror"*/]
+
+    compileTestJava.options*.compilerArgs = commonCompilerArgs +
+            ["-Xlint:-varargs", "-Xlint:-fallthrough", "-Xlint:-rawtypes",
+             "-Xlint:-deprecation", "-Xlint:-unchecked"]
+
+    compileJava {
+        sourceCompatibility = JavaVersion.VERSION_19
+        targetCompatibility = JavaVersion.VERSION_19
+        options.encoding = "UTF-8"
+    }
+
+    compileTestJava {
+        sourceCompatibility = JavaVersion.VERSION_19
+        targetCompatibility = JavaVersion.VERSION_19
+        options.encoding = "UTF-8"
+        options.compilerArgs += "-parameters"
+    }
+
+    dependencies {
+        implementation "org.apache.commons:commons-lang3:$lang3Version"
+        implementation "org.junit.jupiter:junit-jupiter:5.9.3"
+
+        // JSR-305 only used for non-required meta-annotations
+        compileOnly "com.google.code.findbugs:jsr305:3.0.2"
+        testImplementation('com.google.code.findbugs:jsr305:3.0.2') {
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+        }
+    }
+
+    test {
+        useJUnitPlatform()
+        jvmArgs = ["--add-opens", "java.base/java.lang=ALL-UNNAMED"]
+    }
+}
+
+configure(bootProjects) { project ->
+    apply plugin: 'org.springframework.boot'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
