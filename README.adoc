@@ -1,0 +1,75 @@
+= Apress Source Code
+
+This repository accompanies [**Pro Spring 6**](https://link.springer.com/book/10.1007/978-1-4842-8640-1) by Iuliana Cosmina, Rob Harrop, Chris Schaefer, Clarence Ho (Apress, 2023).
+
+image::978-1-4842-8639-5.jpg[Cover image]
+
+Download the files as a zip using the green button, or clone the repository to your machine using Git.
+
+
+== Releases
+
+*Release v6.0* corresponds to the code in the second edition of the published book, without corrections or updates.
+This project was built successfully with *JDK 17*, Gradle *7.3.3*/ Maven 3.8.4. The syntax is specific to Java versions up to and including 17.
+
+== Corrections
+
+For corrections to the content in the published book, see the file link:Errata.adoc[Errata.adoc].
+
+== Contributions
+
+See the file link:Contributing.adoc[Contributing.adoc] for more information on how you can contribute to this repository.
+
+== Building and Deploying
+
+'''
+*NOTE:* This project requires Docker installed. The JOOQ subprojects require the MariaDB container to be up and running in order for sources to be generated. The project does not compile without the generated sources.
+
+'''
+
+=== Using Gradle
+
+The project is configured with the following default Gradle tasks:
+----
+defaultTasks 'clean', 'build'
+----
+This means that you do not have to specify those tasks when building the project from the terminal. Build it from scratch using the Gradle wrapper:
+----
+./gradlew
+----
+Or if you have Gradle installed locally, open a terminal and just run:
+----
+gradle
+----
+If you want to skip the tests run the wrapper with the following arguments:
+----
+./gradlew -x test
+----
+Or run Gradle with the following arguments
+----
+gradle -x test
+----
+
+=== Using Maven
+
+The project is configured with the following default Maven goals:
+----
+ <defaultGoal>clean install</defaultGoal>
+----
+This means that you do not have to specify those goals when building the project from the terminal. Build it from scratch using the Maven wrapper:
+----
+./mvnw
+----
+Or if you have Gradle installed locally, open a terminal and just run:
+----
+mvn
+----
+If you want to skip the tests run the wrapper with the following arguments:
+----
+./mvnw -DskipTests
+----
+Or run Gradle with the following arguments
+----
+maven -DskipTests
+----
+

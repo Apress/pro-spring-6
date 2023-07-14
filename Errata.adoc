@@ -1,0 +1,17 @@
+= Errata for *Pro Spring 6*
+
+Hi guys, I am really thankful to all of you that have bought the book and have contributed to finding mistakes in it and in the code, and asking questions about details that seem unclear.
+
+'''
+
+On **page xx** [Summary of error]:
+
+Details of error here. Highlight key pieces in **bold**.
+
+'''
+
+On **page xx** [Summary of error]:
+
+Details of error here. Highlight key pieces in **bold**.
+
+'''
