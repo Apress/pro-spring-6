@@ -1,0 +1,3 @@
+
+CREATE FUNCTION getFirstNameById (in_id INT) RETURNS VARCHAR(60)
+    RETURN (SELECT first_name FROM SINGER WHERE id = in_id);

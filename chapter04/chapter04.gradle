@@ -1,0 +1,38 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
+description 'Chapter 04: Spring Advanced Configuration!'
+
+// we are using Spring Boot dependency management, but we configure Spring MVC in the classic manner - explicitly, with no Spring Boot "magic"
+dependencyManagement {
+    imports {
+        mavenBom SpringBootPlugin.BOM_COORDINATES
+    }
+}
+
+dependencies {
+    implementation project(':chapter02')
+    implementation "org.slf4j:slf4j-api:$slf4jVersion"
+    implementation "ch.qos.logback:logback-classic:$logbackVersion"
+    implementation "jakarta.annotation:jakarta.annotation-api:$jakartaAnnotationVersion"
+    implementation "org.codehaus.groovy:groovy-all:$groovyVersion"
+    implementation 'org.springframework:spring-context'
+
+    testImplementation 'org.springframework:spring-test'
+    testImplementation "org.mockito:mockito-all:$mockitoVersion"
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+task jar(type: Jar, overwrite: true) {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE  /*  Gradle Fat jars with multiple dependencies are affected by the same bug: https://issues.apache.org/jira/browse/MASSEMBLY-360 this statement fixes it */
+    manifest {
+        attributes(
+                "Created-By": "Iuliana Cosmina",
+                "Specification-Title": "Pro Spring 6",
+                "Main-Class": "com.apress.prospring6.four.ResourceDemo",
+                "Class-Path": configurations.runtimeClasspath.collect { it.getName() }.join(' ')
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}

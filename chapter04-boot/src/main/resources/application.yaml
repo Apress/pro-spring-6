@@ -1,0 +1,9 @@
+
+# Logging config
+logging:
+  pattern:
+    console: " %-5level: %class{0} - %msg%n"
+  level:
+    root: INFO
+    org.springframework: INFO
+    com.apress.prospring6.four: DEBUG

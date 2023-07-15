@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    # use this with @Sql config on class Chapter6ApplicationV2Test
+    # url: "jdbc:tc:mariadb:11.1-rc:///musicdb"
+    url: "jdbc:tc:mariadb:11.1-rc:///testdb?TC_INITSCRIPT=testcontainers/create-schema.sql"
+
+
+# Logging config
+logging:
+  pattern:
+    console: " %-5level: %class{0} - %msg%n"
+  level:
+    root: INFO
+    # org.springframework.boot: DEBUG
+    com.apress.prospring6.six: DEBUG
+    # org.testcontainers: DEBUG
+
+

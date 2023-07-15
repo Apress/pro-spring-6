@@ -1,0 +1,17 @@
+apply plugin: 'java'
+
+dependencies {
+    implementation "org.mariadb.jdbc:mariadb-java-client:$mariadbClientVersion"
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+
+    testImplementation "com.h2database:h2:$h2Version"
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation "org.testcontainers:mariadb:$testcontainersVersion"
+    testImplementation "org.testcontainers:junit-jupiter:$testcontainersVersion"
+}
+
+bootJar {
+    manifest {
+        attributes 'Start-Class': 'com.apress.prospring6.six.boot.Chapter6Application'
+    }
+}

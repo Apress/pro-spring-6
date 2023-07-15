@@ -28,7 +28,7 @@
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
         <maven-shade-plugin.version>3.5.0</maven-shade-plugin.version>
         <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
-        <jupiter.version>5.10.0-RC1</jupiter.version>
+        <jupiter.version>5.9.3</jupiter.version>
 
         <!-- utils -->
         <commons-lang3.version>3.12.0</commons-lang3.version>
@@ -47,7 +47,7 @@
         <h2.version>2.1.214</h2.version>
         <jooq.version>3.17.2</jooq.version>
         <aspectj.version>1.9.9.1</aspectj.version>
-        <logback.version>1.4.8</logback.version> <!-- Required because of https://jira.qos.ch/browse/LOGBACK-1591-->
+        <logback.version>1.4.8</logback.version>
         <slf4j.version>2.0.7</slf4j.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -57,6 +57,14 @@
         <module>chapter02</module>
         <module>chapter02-boot</module>
         <module>chapter03</module>
+        <module>chapter04</module>
+        <module>chapter04-boot</module>
+        <module>chapter05</module>
+        <module>chapter05-boot</module>
+        <module>chapter06</module>
+        <module>chapter06-boot</module>
+        <module>chapter07</module>
+        <module>chapter07-boot</module>
     </modules>
 
     <dependencies>

@@ -1,0 +1,13 @@
+apply plugin: 'java'
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+bootJar {
+    manifest {
+        attributes 'Start-Class': 'com.apress.prospring6.five.boot.Chapter5Application'
+    }
+}

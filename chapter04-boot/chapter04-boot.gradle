@@ -1,0 +1,14 @@
+apply plugin: 'java'
+
+dependencies {
+    implementation project (':chapter02')
+    implementation 'org.springframework.boot:spring-boot-starter'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+bootJar {
+    manifest {
+        attributes 'Start-Class': 'com.apress.prospring6.four.boot.Chapter4Application'
+    }
+}

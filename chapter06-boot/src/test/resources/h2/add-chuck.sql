@@ -1,0 +1,1 @@
+insert into SINGER (first_name, last_name, birth_date) values ('Chuck', 'Berry', '1926-09-18');

@@ -35,8 +35,8 @@ ext {
     h2Version = "2.1.214"
     jooqVersion = "3.17.2"
     aspectjVersion = "1.9.9.1"
-    logbackVersion = "1.2.11"
-    slf4jVersion = "1.7.36"
+    logbackVersion = "1.4.8"
+    slf4jVersion = "2.0.7"
 }
 
 defaultTasks 'clean', 'build'

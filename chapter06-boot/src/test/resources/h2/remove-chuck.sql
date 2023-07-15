@@ -1,0 +1,1 @@
+delete from  SINGER where first_name = 'Chuck';

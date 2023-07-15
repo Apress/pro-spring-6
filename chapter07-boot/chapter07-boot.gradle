@@ -1,0 +1,21 @@
+apply plugin: 'java'
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework:spring-orm'
+
+    implementation "jakarta.annotation:jakarta.annotation-api:$jakartaAnnotationVersion"
+    implementation "com.zaxxer:HikariCP:$hikariVersion"
+    implementation "org.mariadb.jdbc:mariadb-java-client:$mariadbClientVersion"
+    implementation "org.hibernate.orm:hibernate-core:$hibernateVersion"
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation "org.testcontainers:mariadb:$testcontainersVersion"
+    testImplementation "org.testcontainers:junit-jupiter:$testcontainersVersion"
+}
+
+bootJar {
+    manifest {
+        attributes 'Start-Class': 'com.apress.prospring6.seven.boot.Chapter7Application'
+    }
+}

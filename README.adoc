@@ -1,10 +1,12 @@
 = Apress Source Code
 
-This repository accompanies [**Pro Spring 6**](https://link.springer.com/book/10.1007/978-1-4842-8640-1) by Iuliana Cosmina, Rob Harrop, Chris Schaefer, Clarence Ho (Apress, 2023).
+This repository accompanies https://link.springer.com/book/10.1007/978-1-4842-8640-1[**Pro Spring 6**] by Iuliana Cosmina, Rob Harrop, Chris Schaefer, Clarence Ho (Apress, 2023).
 
 image::978-1-4842-8639-5.jpg[Cover image]
 
 Download the files as a zip using the green button, or clone the repository to your machine using Git.
+
+NOTE: Please don't skip reading this document https://imgflip.com/i/7sn8ut[before you get to work].
 
 
 == Releases
@@ -22,10 +24,16 @@ See the file link:Contributing.adoc[Contributing.adoc] for more information on h
 
 == Building and Deploying
 
-'''
-*NOTE:* This project requires Docker installed. The JOOQ subprojects require the MariaDB container to be up and running in order for sources to be generated. The project does not compile without the generated sources.
+*NOTE:* This project requires https://www.docker.com[*Docker*] installed. The JOOQ subprojects require the MariaDB container to be up and running in order for sources to be generated. The project does not compile without the generated sources.
 
-'''
+
+*NOTE:* For easier Java versions management, if you are using a Linux/macOS I also recommend installing https://sdkman.io[SDKMAN]. And running the following command, to use the same JDK I used when writing this project:
+
+[source, shell]
+----
+sdk install java 19.0.1-amzn
+----
+
 
 === Using Gradle
 
