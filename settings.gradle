@@ -16,6 +16,7 @@ rootProject.name = 'pro-spring-6'
 
 include 'chapter02'
 include 'chapter02-boot'
+include 'chapter03'
 
 println(' This project is a collection of simple code samples. It is meant to be used together with the ' +
         '"Pro Spring 6"  book' +

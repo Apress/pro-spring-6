@@ -111,3 +111,9 @@ configure(bootProjects) { project ->
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
+
+// to generate the gradlew config just run `gradle.war`
+// the gradle archive is downloaded when first running ./gradle war
+tasks.withType(Wrapper) {
+    gradleVersion = '8.3-20230504222113+0000' //version required
+}

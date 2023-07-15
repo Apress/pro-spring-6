@@ -41,7 +41,8 @@ Or if you have Gradle installed locally, open a terminal and just run:
 ----
 gradle
 ----
-If you want to skip the tests run the wrapper with the following arguments:
+
+If you want to skip the tests (build time will be shorter) run the wrapper with the following arguments:
 ----
 ./gradlew -x test
 ----
