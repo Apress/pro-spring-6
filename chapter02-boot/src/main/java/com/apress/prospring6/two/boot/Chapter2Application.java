@@ -25,38 +25,20 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package com.apress.prospring6.two;
+package com.apress.prospring6.two.boot;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
+import com.apress.prospring6.two.decoupled.MessageRenderer;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-/**
- * Created by iuliana.cosmina on 19/06/2022
- */
-public class DocCorrecter {
-    public static void main(String... args) throws Exception {
-        var lines = Files.readAllLines(Path.of("/Users/iulianacosmina/apress/book-spring-pro-6/ch07.adoc"));
-        lines.stream().forEach(line -> {
-                if(line.contains("Listing")) {
-                    var listing = line.substring(line.indexOf("Listing"), line.indexOf("Listing") + 12);
-                    System.out.println(listing);
-                    /*
-                    if (listing.contains ("-")) {
-                        var number  = listing.substring(listing.indexOf("-")+1).trim();
-                        if (listing.endsWith(".")) {
-                            number = listing.substring(listing.indexOf("-")+1, listing.length()-1).trim();
-                        }
-                        int no = Integer.parseInt(number);
-                        if(no >1) {
-                            var newNo = (no +1) + "";
-                            System.out.println(newNo);
-                        }
-                        System.out.println(number);
-                    }*/
+@SpringBootApplication
+        (scanBasePackages = "com.apress.prospring6.two.annotated") // needed because this configuration class  is in package com.apress.prospring6.two.boot
+public class Chapter2Application {
 
-                    System.out.println(line);
-                }
-        });
-
+    public static void main(String... args) {
+        var ctx = SpringApplication.run(Chapter2Application.class, args);
+        MessageRenderer mr = ctx.getBean("renderer", MessageRenderer.class);
+        mr.render();
     }
+
 }

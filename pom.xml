@@ -52,6 +52,7 @@
 
     <modules>
      <module>chapter02</module>
+     <module>chapter02-boot</module>
     </modules>
 
     <dependencyManagement>

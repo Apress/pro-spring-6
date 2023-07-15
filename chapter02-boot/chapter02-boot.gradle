@@ -1,0 +1,12 @@
+apply plugin: 'java'
+
+dependencies {
+    implementation project (':chapter02')
+    implementation 'org.springframework.boot:spring-boot-starter'
+}
+
+bootJar {
+    manifest {
+        attributes 'Start-Class': 'com.apress.prospring6.two.boot.Chapter2Application'
+    }
+}

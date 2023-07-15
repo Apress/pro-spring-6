@@ -10,7 +10,7 @@ Download the files as a zip using the green button, or clone the repository to y
 == Releases
 
 *Release v6.0* corresponds to the code in the second edition of the published book, without corrections or updates.
-This project was built successfully with *JDK 17*, Gradle *7.3.3*/ Maven 3.8.4. The syntax is specific to Java versions up to and including 17.
+This project was built successfully with *JDK 19*, Gradle *8.3*/ Maven 3.9.3. The syntax is specific to Java versions up to and including 17.
 
 == Corrections
 
