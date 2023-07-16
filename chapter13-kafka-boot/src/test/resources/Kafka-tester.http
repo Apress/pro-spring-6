@@ -1,0 +1,21 @@
+### Evelyn sending letter message to Tom
+POST http://localhost:8080/kafka/send
+Content-Type: application/json
+
+{
+  "title": "To my Dear Friend",
+  "sender": "HTTPIE",
+  "sentOn" : "2022-12-04",
+  "content" : "Haven't read anything written by you in a while. Miss you!"
+}
+
+### Tom sending letter message to Evelyn
+POST http://localhost:8090/kafka/send
+Content-Type: application/json
+
+{
+"title": "Miss you too",
+"sender": "HTTPIE",
+"sentOn" : "2022-12-05",
+"content" : "Scotland is rather lovely this time of year. Would you like to visit?"
+}

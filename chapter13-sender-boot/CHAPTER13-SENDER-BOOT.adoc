@@ -1,0 +1,9 @@
+= Chapter 13 Writer Project
+
+Run with:
+
+[source]
+----
+java -jar build/libs/chapter13-sender-boot-6.0-SNAPSHOT.jar --app.sender.name=Evelyn --server.port=8080 --app.correspondent.address=http://localhost:8090
+java -jar build/libs/chapter13-sender-boot-6.0-SNAPSHOT.jar --app.sender.name=Tom --server.port=8090 --app.correspondent.address=http://localhost:8080
+----

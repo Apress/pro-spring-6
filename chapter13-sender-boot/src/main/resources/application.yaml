@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: chapter13-sender-app
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: "jdbc:h2:mem:testdb"
+    driverClassName: "org.h2.Driver"
+    username: sa
+    password: password
+  jpa:
+    database-platform: "org.hibernate.dialect.H2Dialect"
+    hibernate:
+      ddl-auto: create-drop
+# Uppercase Table Names
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+app:
+  sender:
+    name: "default"
+  correspondent:
+    address: "http://localhost:8090"
+
+server:
+  port: 8090
+  compression:
+    enabled: true
+  address: 0.0.0.0
+
+# Logging config
+logging:
+  pattern:
+    console: "%-5level: %class{0} - %msg%n"
+  level:
+    root: INFO
+    org.springframework: DEBUG
+    com.apress.prospring6.thirteen: INFO

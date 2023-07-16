@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "app.sending.topic.name",
+      "type": "java.lang.String",
+      "description": "Identifies the topic where the letters are sent."
+    },
+    {
+      "name": "app.receiving.topic.name",
+      "type": "java.lang.String",
+      "description": "Identifies the topic where the letters are received."
+    }
+  ]
+}

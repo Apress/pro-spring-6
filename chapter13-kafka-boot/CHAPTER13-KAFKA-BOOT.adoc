@@ -1,0 +1,25 @@
+= Chapter 13 Writer Project
+
+Start the containers using:
+
+[source, shell]
+----
+cd chapter13-kafka-boot/docker
+docker compose up
+----
+
+To shut them down, open another terminal and run:
+
+[source, shell]
+----
+cd chapter13-kafka-boot/docker
+docker compose down
+----
+
+Run with:
+
+[source, shell]
+----
+java -jar build/libs/chapter13-kafka-boot-6.0-SNAPSHOT.jar --app.sending.topic.name=Tom --app.receiving.topic.name=Evelyn --server.port=8080
+java -jar build/libs/chapter13-kafka-boot-6.0-SNAPSHOT.jar --app.sending.topic.name=Evelyn --app.receiving.topic.name=Tom --server.port=8090
+----

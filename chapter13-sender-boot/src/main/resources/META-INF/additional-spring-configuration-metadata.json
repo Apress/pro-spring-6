@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "app.sender.name",
+      "type": "java.lang.String",
+      "description": "Identifies the writer sending the letters."
+    },
+    {
+      "name": "app.correspondent.address",
+      "type": "java.lang.String",
+      "description": "Identifies the correspondent the letters are sent to."
+    }
+  ]
+}

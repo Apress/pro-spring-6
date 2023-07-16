@@ -1,0 +1,55 @@
+### Tom sending letter to Evelyn
+POST http://localhost:8090/send
+Content-Type: application/json
+
+{
+  "title": "Salutations from Scotland",
+  "category": "Personal",
+  "content" : "Scotland is rather lovely this time of year. Would you like to visit?"
+}
+
+### Evelyn sending letter to Tom
+POST http://localhost:8080/send
+Content-Type: application/json
+
+{
+  "title": "Salutations from England",
+  "category": "PERSONAL",
+  "content" : "I would love to visit. Let's discuss dates."
+}
+
+### Root JSON representation of Tom
+GET http://localhost:8090/
+Accept: application/json
+
+### Root JSON representation of Evelyn
+GET http://localhost:8080/
+Accept: application/json
+
+### Root JSON representation of Tom's letters
+GET http://localhost:8090/letters
+Accept: application/json
+
+### Root JSON representation of Evelyn's letters
+GET http://localhost:8080/letters
+Accept: application/json
+
+### Direct Post request to Tom's letter Rest Repository
+POST http://localhost:8090/letters
+Content-Type: application/json
+
+{
+  "title": "To my Dear Friend",
+  "sender": "HTTPIE",
+  "sentOn" : "2022-11-27",
+  "category": "PERSONAL",
+  "content" : "Haven't read anything written by you in a while. Miss you!"
+}
+
+### Expect 405, disabled
+DELETE http://localhost:8090/letters/1
+
+### Show all letters with category=PERSONAL
+GET http://localhost:8090/letters/search/byCategory?category=PERSONAL
+Accept: application/json
+

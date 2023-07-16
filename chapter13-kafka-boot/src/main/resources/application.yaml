@@ -1,0 +1,28 @@
+server:
+  port: 8090
+  compression:
+    enabled: true
+  address: 0.0.0.0
+
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: letters-group-id
+
+app:
+  sending:
+    topic:
+      name: default  # topic where letters are sent
+  receiving:
+    topic:
+      name: self # topic where letters are received
+
+# Logging config
+logging:
+  pattern:
+    console: "%-5level: %class{0} - %msg%n"
+  level:
+    root: INFO
+    org.springframework: DEBUG
+    com.apress.prospring6.thirteen: INFO

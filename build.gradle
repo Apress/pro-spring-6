@@ -38,6 +38,7 @@ ext {
     aspectjVersion = "1.9.9.1"
     logbackVersion = "1.4.8"
     slf4jVersion = "2.0.7"
+    lombokVersion = "1.18.28"
 }
 
 defaultTasks 'clean', 'build'

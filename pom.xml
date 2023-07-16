@@ -35,6 +35,7 @@
 
         <!-- utils -->
         <commons-lang3.version>3.12.0</commons-lang3.version>
+        <lombok.version>1.18.28</lombok.version>
         <mockito.version>2.0.2-beta</mockito.version>
         <testcontainers.version>1.18.3</testcontainers.version>
         <jakarta.annotation.version>2.1.0</jakarta.annotation.version>
@@ -82,6 +83,9 @@
         <module>chapter11</module>
         <module>chapter11-boot</module>
         <module>chapter12</module>
+        <module>chapter13-artemis-boot</module>
+        <module>chapter13-kafka-boot</module>
+        <module>chapter13-sender-boot</module>
     </modules>
 
     <dependencies>

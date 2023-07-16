@@ -38,6 +38,9 @@ include 'chapter10-mongo-boot'
 include 'chapter11'
 include 'chapter11-boot'
 include 'chapter12'
+include 'chapter13-artemis-boot'
+include 'chapter13-kafka-boot'
+include 'chapter13-sender-boot'
 
 println(' This project is a collection of simple code samples. It is meant to be used together with the ' +
         '"Pro Spring 6"  book' +

@@ -1,0 +1,23 @@
+apply plugin: 'java'
+
+ext['artemis.version'] = '2.29.0'
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-artemis'
+    implementation 'org.springframework.boot:spring-boot-starter-json'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+    implementation "org.apache.activemq:artemis-jakarta-server:2.29.0"
+    implementation "jakarta.annotation:jakarta.annotation-api:$jakartaAnnotationVersion"
+
+    compileOnly "org.projectlombok:lombok:$lombokVersion"
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.apache.activemq:artemis-junit:2.29.0'
+}
+
+bootJar {
+    manifest {
+        attributes 'Start-Class': 'com.apress.prospring6.thirteen.ArtemisApplication'
+    }
+}
