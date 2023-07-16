@@ -23,7 +23,7 @@ ext {
 
     lang3Version = "3.12.0"
     mockitoVersion = "2.0.2-beta"
-    testcontainersVersion = "1.17.3"
+    testcontainersVersion = "1.18.3"
     jakartaAnnotationVersion = "2.1.0"
     jakartaInjectApiVersion = "2.0.1"
     groovyVersion = "3.0.11"

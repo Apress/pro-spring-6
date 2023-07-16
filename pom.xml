@@ -36,7 +36,7 @@
         <!-- utils -->
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <mockito.version>2.0.2-beta</mockito.version>
-        <testcontainers.version>1.17.3</testcontainers.version>
+        <testcontainers.version>1.18.3</testcontainers.version>
         <jakarta.annotation.version>2.1.0</jakarta.annotation.version>
         <jakarta.injectApi.version>2.0.1</jakarta.injectApi.version>
         <groovy.version>3.0.11</groovy.version>
@@ -69,6 +69,7 @@
         <module>chapter07</module>
         <module>chapter07-boot</module>
         <module>chapter07-jooq</module>
+        <module>chapter07-jooq-boot</module>
     </modules>
 
     <dependencies>

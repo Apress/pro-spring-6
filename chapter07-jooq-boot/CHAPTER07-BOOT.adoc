@@ -1,0 +1,42 @@
+= Spring Boot with Hibernate & jOOQ
+
+== Setting up the database
+
+You can choose to install MariaDB locally following the instructions on the official site. But you can also use MariaDB in a docker container.
+
+Change directory to `chapter07-boot/docker-build` and run the following command to create the container image:
+
+[source]
+----
+docker build -t prospring6-mariadb:1.1 .
+----
+
+Run the following to start the container:
+
+[source]
+----
+docker run --name local-mariadb -d -p 3306:3306 prospring6-mariadb:1.1
+----
+
+Use the IntelliJ IDEA to create a connection to localhost with the credentials in the `Dockerfile` and feel free to query the tables as you write your Spring code.
+
+== MENTIONS
+
+
+*Note:* Using Testcontainers for running tests was dropped because of two reasons:
+
+1.Configuring a container like this for the test environment:
+
+[source, yaml]
+----
+spring:
+  datasource:
+    url: "jdbc:tc:mariadb:10.9-rc:///musicdb?TC_INITSCRIPT=testcontainers/create-schema.sql"
+----
+is useless because the database name is ignored.
+
+2.The database name however is very important for the JOOQ generator, that hard-codes it in the generated sources.
+
+And thus, when running the tests in IntelliJ, please start up the container as instructed in this document beforehand.
+
+The Maven and Gradle builds create this container to generate the sources and run the tests on it, and then discard it.

@@ -1,0 +1,127 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
+plugins {
+    id 'nu.studer.jooq' version '7.1.1'
+    id 'java'
+}
+
+description 'Chapter 07: Spring Hibernate and jOOQ with Boot!'
+
+// Telling Gradle explicitly that src/main/generated contains sources too -->
+sourceSets.main.java.srcDirs = ['src/main/java', 'src/main/generated']
+
+// we are using Spring Boot dependency management, but we configure Spring MVC in the classic manner - explicitly, with no Spring Boot "magic"
+dependencyManagement {
+    imports {
+        mavenBom SpringBootPlugin.BOM_COORDINATES
+    }
+}
+
+dependencies {
+    //  This starter brings over the last jOOQ version found on the Maven Public Repo: 3.16.4
+    implementation ('org.springframework.boot:spring-boot-starter-jooq') {
+        exclude group: 'org.jooq', module: 'jooq'
+    }
+    implementation "org.jooq:jooq:$jooqVersion"
+    implementation 'org.springframework:spring-orm'
+
+    implementation "jakarta.annotation:jakarta.annotation-api:$jakartaAnnotationVersion"
+    implementation "com.zaxxer:HikariCP:$hikariVersion"
+    implementation "org.mariadb.jdbc:mariadb-java-client:$mariadbClientVersion"
+    implementation "org.hibernate.orm:hibernate-core:$hibernateVersion"
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    jooqGenerator "org.mariadb.jdbc:mariadb-java-client:$mariadbClientVersion"
+}
+
+jooq {
+    version = "$jooqVersion"
+    configurations {
+        main {
+            // include task dependency from compileJava to generateJooq
+            generateSchemaSourceOnCompilation = true
+
+            generationTool {
+                logging = org.jooq.meta.jaxb.Logging.WARN
+                jdbc {
+                    driver = 'org.mariadb.jdbc.Driver'
+                    url = 'jdbc:mariadb://localhost:3306/musicdb'
+                    user = 'prospring6'
+                    password = 'prospring6'
+                }
+                generator {
+                    name = 'org.jooq.codegen.JavaGenerator'
+                    database {
+                        name = 'org.jooq.meta.mariadb.MariaDBDatabase'
+                        inputSchema = 'musicdb'
+                        includes = '.*'
+                        excludes = ''
+                    }
+                    target {
+                        packageName = 'com.apress.prospring6.seven.jooq.generated'
+                        directory = 'src/main/generated'
+                    }
+                    generate {
+                        pojos = true
+                        pojosToString = true
+                        daos = true
+                    }
+                }
+            }
+        }
+    }
+}
+
+tasks.register('buildJOOQImage', Exec) {
+    group = 'jooq'
+    println("... building Docker image ...")
+    workingDir('./docker-build')
+    commandLine 'docker', 'build', '-t', 'prospring6-mariadb:1.1', '.'
+}
+
+tasks.register('startJOOQContainer', Exec) {
+    group = 'jooq'
+    println("... run Container image ...")
+    workingDir('./docker-build')
+    commandLine 'docker', 'run', '--name', 'local-mariadb', '-d', '-p', '3306:3306', 'prospring6-mariadb:1.1'
+}
+
+tasks.register('stopJOOQContainer', Exec) {
+    group = 'jooq'
+    println("... stop Container image ...")
+    workingDir('./docker-build')
+    commandLine 'docker', 'rm', '-f', 'local-mariadb'
+}
+
+// this is needed because even if the container is up, it takes a while for the DB to be accessible
+tasks.register('waitForJOOQDb') {
+    group = 'jooq'
+    doLast {
+        println("... wait for DB to be accessible ...")
+        ant.waitfor(
+                maxwait:"20", maxwaitunit:"second",
+                checkevery:"500", checkeveryunit: "millisecond"
+        ){
+            socket(server:"0.0.0.0", port:"3306")
+        }
+    }
+}
+
+startJOOQContainer.dependsOn tasks.buildJOOQImage
+waitForJOOQDb.dependsOn tasks.startJOOQContainer
+waitForJOOQDb.mustRunAfter tasks.startJOOQContainer
+
+generateJooq.dependsOn tasks.waitForJOOQDb
+generateJooq.mustRunAfter tasks.waitForJOOQDb
+//generateJooq.finalizedBy tasks.stopJOOQContainer
+
+test.finalizedBy tasks.stopJOOQContainer
+// we reuse the container for tests because Testcontainer insists on naming the database 'test'
+// and JOOQ does not want to make the database name configurable.
+
+bootJar {
+    manifest {
+        attributes 'Start-Class': 'com.apress.prospring6.seven.Chapter7JooqApplication'
+    }
+}
