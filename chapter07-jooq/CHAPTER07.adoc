@@ -1,0 +1,34 @@
+= Spring with Hibernate & jOOQ
+
+== Setting up the database
+
+You can choose to install MariaDB locally following the instructions on the official site. But you can also use MariaDB in a docker container.
+
+Change directory to `chapter07/docker-build` and run the following command to create the container image:
+
+[source]
+----
+docker build -t prospring6-mariadb:1.1 .
+----
+
+Run the following to start the container:
+
+[source]
+----
+docker run --name local-mariadb -d -p 3306:3306 prospring6-mariadb:1.1
+----
+
+Use the IntelliJ IDEA to create a connection to localhost with the credentials in the `Dockerfile` and feel free to query the tables as you write your Spring code.
+
+== Setting up jOOQ
+
+As of jOOQ 3.15, the commercial edition is not published to Maven Central, but available only from the jOOQ website: https://www.jooq.org/download/versions. The distribution can be downloaded as a ZIP file, which contains scripts to publish the artifacts in a local repository (via `mvn install` or `mvn deploy`).
+
+My recommendation is to run the `maven-install` script specific to your operating system.
+
+At the moment this chapter is being written, version 3.16.7 is the most recent.
+
+Since this project depends on libraries that you manually have to install on your local system, it is taken out of the full build. To add it to the full build, remove the commented configuration snippet from the main `pom.xml` or `settings.gradle`, depending on the build tool you chose to use.
+
+
+*Note:* All Hibernate demo classes and test classes were kept and they now use entities under package

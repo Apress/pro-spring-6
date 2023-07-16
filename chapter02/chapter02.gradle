@@ -16,18 +16,15 @@ dependencies {
     implementation "org.codehaus.groovy:groovy-all:$groovyVersion"
 }
 
-task jar(type: Jar, overwrite: true) {
-    duplicatesStrategy = DuplicatesStrategy.INCLUDE  /*  Gradle Fat jars with multiple dependencies are affected by the same bug: https://issues.apache.org/jira/browse/MASSEMBLY-360 this statement fixes it */
+tasks.register('fatJar', Jar) {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    /*  Gradle Fat jars with multiple dependencies are affected by the same bug: https://issues.apache.org/jira/browse/MASSEMBLY-360 this statement fixes it */
     manifest {
-        attributes(
-                 "Created-By": "Iuliana Cosmina",
-                 "Specification-Title": "Pro Spring 6",
-                 "Main-Class": "com.apress.prospring6.two.HelloWorldSpringDI",
-                 "Class-Path": configurations.runtimeClasspath.collect { it.getName() }.join(' ')
-        )
+        attributes "Main-Class": "com.apress.prospring6.two.HelloWorldSpringDI",
+                "Created-By": "Iuliana Cosmina",
+                "Specification-Title": "Pro Spring 6 - Chapter 2"
     }
-    from {
-        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-    }
+    from {configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }
 

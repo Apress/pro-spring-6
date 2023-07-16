@@ -21,17 +21,15 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-engine'
 }
 
-task jar(type: Jar, overwrite: true) {
-    duplicatesStrategy = DuplicatesStrategy.INCLUDE  /*  Gradle Fat jars with multiple dependencies are affected by the same bug: https://issues.apache.org/jira/browse/MASSEMBLY-360 this statement fixes it */
+tasks.register('fatJar', Jar) {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    /*  Gradle Fat jars with multiple dependencies are affected by the same bug: https://issues.apache.org/jira/browse/MASSEMBLY-360 this statement fixes it */
     manifest {
-        attributes(
+        attributes "Main-Class": "com.apress.prospring6.three.inject.InjectDemo",
                 "Created-By": "Iuliana Cosmina",
-                "Specification-Title": "Pro Spring 6",
-                "Main-Class": "com.apress.prospring6.three.inject.InjectDemo",
-                "Class-Path": configurations.runtimeClasspath.collect { it.getName() }.join(' ')
-        )
+                "Specification-Title": "Pro Spring 6 - Chapter 3"
     }
-    from {
-        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-    }
+    from {configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }
+

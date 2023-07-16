@@ -28,12 +28,12 @@ ext {
     jakartaInjectApiVersion = "2.0.1"
     groovyVersion = "3.0.11"
     dbcp2Version = "2.9.0"
-    mariadbClientVersion = "3.0.7"
+    mariadbClientVersion = "3.1.4"
     hikariVersion = "5.0.1"
     hibernateVersion = "6.1.1.Final"
     querydslVersion = "5.0.0"
     h2Version = "2.1.214"
-    jooqVersion = "3.17.2"
+    jooqVersion = "3.18.5"
     aspectjVersion = "1.9.9.1"
     logbackVersion = "1.4.8"
     slf4jVersion = "2.0.7"
@@ -108,12 +108,12 @@ configure(bootProjects) { project ->
     apply plugin: 'org.springframework.boot'
 }
 
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
     options.encoding = "UTF-8"
 }
 
 // to generate the gradlew config just run `gradle.war`
 // the gradle archive is downloaded when first running ./gradle war
-tasks.withType(Wrapper) {
+tasks.withType(Wrapper).configureEach {
     gradleVersion = '8.3-20230504222113+0000' //version required
 }

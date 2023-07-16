@@ -25,6 +25,7 @@ include 'chapter06'
 include 'chapter06-boot'
 include 'chapter07'
 include 'chapter07-boot'
+include 'chapter07-jooq'
 
 println(' This project is a collection of simple code samples. It is meant to be used together with the ' +
         '"Pro Spring 6"  book' +

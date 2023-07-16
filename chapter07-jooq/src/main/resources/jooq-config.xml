@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="http://www.jooq.org/xsd/jooq-codegen-3.16.5.xsd">
+    <!-- Configure the database connection here -->
+    <jdbc>
+        <driver>org.mariadb.jdbc.Driver</driver>
+        <url>jdbc:mariadb://localhost:3306/musicdb</url>
+        <user>prospring6</user>
+        <password>prospring6</password>
+    </jdbc>
+
+    <generator>
+        <name>org.jooq.codegen.JavaGenerator</name>
+        <database>
+            <name>org.jooq.meta.mariadb.MariaDBDatabase</name>
+            <!-- The database schema (or in the absence of schema support, in your RDBMS this
+                 can be the owner, user, database name) to be generated -->
+            <inputSchema>musicdb</inputSchema>
+            <includes>.*</includes>
+            <excludes/>
+        </database>
+
+        <target>
+            <!-- The destination package of your generated classes (within the destination directory) -->
+            <packageName>com.apress.prospring6.seven.jooq.generated</packageName>
+            <directory>./chapter07-jooq/src/main/generated</directory>
+        </target>
+
+        <generate>
+            <pojos>true</pojos>
+            <pojosToString>true</pojosToString>
+            <daos>true</daos>
+        </generate>
+
+    </generator>
+</configuration>
