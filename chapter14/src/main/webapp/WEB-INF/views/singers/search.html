@@ -1,0 +1,64 @@
+<!--
+Created by IntelliJ IDEA.
+User: iulianacosmina
+Date: 2019-07-14
+Time: 11:43
+-->
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<head th:replace="~{templates/layout :: pageTitle('Search Singer Page')}"></head>
+
+<body>
+<div class="container">
+    <header th:replace="~{templates/layout :: pageHeader}" ></header>
+
+    <header th:replace="~{templates/layout :: pageMenu}" ></header>
+
+    <section th:fragment="~{templates/layout :: pageContent}">
+        <div class="content">  <!-- content -->
+            <h4 th:text="#{command.search} + ' ' + #{singer.title}">SEARCH</h4>
+
+            <div class="container col-lg-12">
+                <form name="search" th:action="@{/singers/go}" th:object="${criteriaDto}" method="get" class="col p-4">
+
+                    <div class="row mb-1">
+                        <label for="fieldName" th:text="#{label.Criteria.fieldname} + ':'" class="col-sm-4 form-label">FN:</label>
+                        <div class="col-sm-8">
+                            <select th:field="*{fieldName}" class="form-select">
+                                <option th:value="firstname" th:text="#{label.Singer.firstname}">FN</option>
+                                <option th:value="lastname" th:text="#{label.Singer.lastname}">LN</option>
+                                <option th:value="birthdate" th:text="#{label.Singer.birthDate}">BD</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-1">
+                        <label for="fieldValue" th:text="#{label.Criteria.fieldvalue} + ':'" class="col-sm-4 form-label"></label>
+                        <div class="col-sm-8">
+                            <div>
+                                <input type="text" th:field="*{fieldValue}" class="form-control"/>
+                                <small th:text="#{label.dateFormat.accepted}" class="text-mutes">ACC</small></div>
+                                <span th:if="${#fields.hasErrors('fieldValue')}" class="error" th:errors="*{fieldValue}">BAD DATA</span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-1">
+                        <label th:for="exactMatch" th:text="#{label.Criteria.exactmatch}" class="col-sm-5 form-label">EM</label>
+                        <div class="col-sm-7">
+                            <input type="checkbox" th:field="*{exactMatch}" class="form-check"/>
+                        </div>
+                    </div>
+
+                    <div class="bs-component mb-1">
+                        <input type="submit" th:value="#{command.search}" id="searchButton" class="btn btn-dark"/>
+                    </div>
+                </form>
+            </div>
+        </div> <!-- content -->
+    </section>
+
+    <footer th:replace="~{templates/layout :: pageFooter}" ></footer>
+</div>
+</body>
+</html>

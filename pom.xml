@@ -33,7 +33,11 @@
         <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
         <jupiter.version>5.9.3</jupiter.version>
 
+        <servletApi.version>6.0.0</servletApi.version>
+        <thymeleaf.version>3.1.1.RELEASE</thymeleaf.version>
+
         <!-- utils -->
+        <jackson.version>2.15.2</jackson.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <lombok.version>1.18.28</lombok.version>
         <mockito.version>2.0.2-beta</mockito.version>
@@ -86,6 +90,10 @@
         <module>chapter13-artemis-boot</module>
         <module>chapter13-kafka-boot</module>
         <module>chapter13-sender-boot</module>
+        <module>chapter14</module>
+        <module>chapter14-boot</module>
+        <module>chapter15</module>
+        <module>chapter15-boot</module>
     </modules>
 
     <dependencies>
