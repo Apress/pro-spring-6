@@ -100,6 +100,7 @@ public class Chapter15ApplicationTest {
         );
     }
 
+
     @Test
     public void testNegativeCreate() throws URISyntaxException {
         LOGGER.info("--> Testing create singer");
@@ -111,9 +112,10 @@ public class Chapter15ApplicationTest {
         RequestEntity<Singer>  req = new RequestEntity<>(singerNew, HttpMethod.POST, new URI("http://localhost:"+port+"/singer/"));
 
         ResponseEntity<String> response =  restTemplate.exchange(req, String.class);
+        System.out.println(">>> response  " + response.getBody());
         assertAll("testNegativeCreate",
                 () -> assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode()),
-                ()-> assertTrue(response.getBody().contains("could not execute statement; SQL [n/a]; constraint [FIRST_NAME]")));
+                ()-> assertTrue(response.getBody().contains("Duplicate entry 'Ben-Barnes'")));
     }
 
 }

@@ -1,18 +1,6 @@
 spring:
   datasource:
-    url: "jdbc:tc:mariadb:latest:///testdb?TC_INITSCRIPT=testcontainers/create-schema.sql"
-  jpa:
-    properties:
-      hibernate:
-        jdbc:
-          batch_size: 10
-          fetch_size: 30
-        max_fetch_depth: 3
-        show-sql: true
-        format-sql: true
-        use_sql_comments: true
-        hbm2ddl:
-          auto: none
+    url: "jdbc:tc:mariadb:latest:///test?TC_INITSCRIPT=testcontainers/create-schema.sql"
 
 # Logging config
 logging:
