@@ -25,38 +25,28 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package com.apress.prospring6.two;
+package com.apress.prospring6.eleven;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
+import com.apress.prospring6.eleven.domain.Blogger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
- * Created by iuliana.cosmina on 19/06/2022
+ * Created by iuliana.cosmina on 17/08/2022
  */
-public class DocCorrecter {
-    public static void main(String... args) throws Exception {
-        var lines = Files.readAllLines(Path.of("/Users/iulianacosmina/apress/book-spring-pro-6/ch07.adoc"));
-        lines.stream().forEach(line -> {
-                if(line.contains("Listing")) {
-                    var listing = line.substring(line.indexOf("Listing"), line.indexOf("Listing") + 12);
-                    System.out.println(listing);
-                    /*
-                    if (listing.contains ("-")) {
-                        var number  = listing.substring(listing.indexOf("-")+1).trim();
-                        if (listing.endsWith(".")) {
-                            number = listing.substring(listing.indexOf("-")+1, listing.length()-1).trim();
-                        }
-                        int no = Integer.parseInt(number);
-                        if(no >1) {
-                            var newNo = (no +1) + "";
-                            System.out.println(newNo);
-                        }
-                        System.out.println(number);
-                    }*/
+public class Chapter11Demo {
 
-                    System.out.println(line);
-                }
-        });
+    private static Logger LOGGER = LoggerFactory.getLogger(Chapter11Demo.class);
 
+    public static void main(String... args) {
+        try (var ctx = new AnnotationConfigApplicationContext(AppConfig.class)) {
+            var springBlogger = ctx.getBean("springBlogger", Blogger.class);
+            LOGGER.info("SpringBlogger info: {}" , springBlogger);
+
+            var awsBlogger  = ctx.getBean("awsBlogger", Blogger.class);
+            LOGGER.info("AwsBlogger info: {}" , awsBlogger);
+
+        }
     }
 }

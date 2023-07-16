@@ -1,0 +1,19 @@
+= Task Scheduling
+
+You can choose to install MariaDB locally following the instructions on the official site. But you can also use MariaDB in a docker container.
+
+Change directory to `chapter10/docker-build` and run the following command to create the container image:
+
+[source]
+----
+docker build -t prospring6-mariadb:1.4 .
+----
+
+Run the following to start the container:
+
+[source]
+----
+docker run --name local-ch12-mariadb -d -p 3306:3306 prospring6-mariadb:1.4
+----
+
+Use the IntelliJ IDEA to create a connection to localhost with the credentials in the `Dockerfile` and feel free to query the tables as you write your Spring code.

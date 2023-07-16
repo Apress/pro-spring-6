@@ -1,7 +1,7 @@
 /*
 Freeware License, some rights reserved
 
-Copyright (c) 2022 Iuliana Cosmina
+Copyright (c) 2023 Iuliana Cosmina
 
 Permission is hereby granted, free of charge, to anyone obtaining a copy
 of this software and associated documentation files (the "Software"),

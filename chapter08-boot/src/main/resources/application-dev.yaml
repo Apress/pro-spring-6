@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    driverClassName: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/musicdb?useSSL=false
+    username: prospring6
+    password: prospring6
+    hikari:
+      maximum-pool-size: 25
+  jpa:
+    generate-ddl: false
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 10
+          fetch_size: 30
+        max_fetch_depth: 3
+        show-sql: true
+        format-sql: false
+        use_sql_comments: false
+        hbm2ddl:
+          auto: none
+
+
+# Logging config
+logging:
+  pattern:
+    console: "%-5level: %class{0} - %msg%n"
+  level:
+    root: INFO
+    org.springframework.boot: INFO
+    com.apress.prospring6.eight: INFO

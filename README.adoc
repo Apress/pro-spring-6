@@ -6,7 +6,7 @@ image::978-1-4842-8639-5.jpg[Cover image]
 
 Download the files as a zip using the green button, or clone the repository to your machine using Git.
 
-NOTE: Please don't skip reading this document https://imgflip.com/i/7sn8ut[before you get to work] and the AsciiDoc files specific to each project.
+NOTE: Please don't skip reading this document https://imgflip.com/i/7sn8ut[before you get to work] and the AsciiDoc files specific to each project. This project contains comments and references explaining implementation decisions that could make another book in itself. So, enjoy!
 
 
 == Releases
@@ -26,7 +26,7 @@ See the file link:Contributing.adoc[Contributing.adoc] for more information on h
 
 NOTE: This project requires https://www.docker.com[*Docker*] installed and running.
 
-NOTE: Projects `chapter07-jooq` and `chapter07-jooq-boot` were updated to allow for a full build, which required some changes in the configuration of the Maven/Gradle files. However, they are still unpredictable, and sometimes they might fail because the container is not ready in time. I expect this to happen on slower computers. If this is an issue for you, just remove these projects from the general build.
+NOTE: Projects `chapter07-jooq` and `chapter07-jooq-boot` were updated to allow for a full build, which required some changes in the configuration of the Maven/Gradle files. However, they are still unpredictable, and sometimes they might fail because the container is not ready in time. I expect this to happen on slower computers. If this is an issue for you, just remove these projects from the general build, or just don't run the full build at all.
 
 NOTE: For easier Java versions management, if you are using a Linux/macOS I also recommend installing https://sdkman.io[SDKMAN]. And running the following command, to use the same JDK I used when writing this project:
 

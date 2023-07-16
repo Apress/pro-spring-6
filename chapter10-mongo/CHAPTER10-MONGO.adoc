@@ -1,0 +1,32 @@
+= Spring Data MngoDB
+
+You can choose to install MongoDB locally following the instructions on the official site. But you can also use MongoDB in a docker container (https://hub.docker.com/_/mongo).
+
+Change directory to `chapter10-mongo-boot/docker-build` and run the following command to create the container image:
+
+[source]
+----
+docker build -t prospring6-mongodb:1.0 .
+----
+
+Run the following to start the container:
+
+[source]
+----
+docker run --name local-ch10-mongodb -d -p 27017:27017 prospring6-mongodb:1.0
+----
+
+Use the IntelliJ IDEA to create a connection to localhost with the credentials in the `Dockerfile` and feel free to query the documents as you write your Spring code.
+
+Use the default QL console in IntelliJ IDEA and try these:
+
+[source]
+----
+db
+
+db.singers.find({})
+
+db.singers.findOne({})
+
+db.singers.findOne({'firstName': 'Ben'})
+----

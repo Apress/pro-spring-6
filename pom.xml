@@ -43,8 +43,9 @@
         <commons.dbcp2.version>2.9.0</commons.dbcp2.version>
         <mariadb.client.version>3.1.4</mariadb.client.version>
         <hikari.version>5.0.1</hikari.version>
-        <hibernate.version>6.1.1.Final</hibernate.version>
-        <querydsl.version>5.0.0</querydsl.version>
+        <hibernate.version>6.2.6.Final</hibernate.version>
+        <hibernate.validator.version>8.0.1.Final</hibernate.validator.version>
+        <mongo.driver.version>4.9.1</mongo.driver.version>
 
         <!-- others -->
         <h2.version>2.1.214</h2.version>
@@ -68,8 +69,19 @@
         <module>chapter06-boot</module>
         <module>chapter07</module>
         <module>chapter07-boot</module>
-        <module>chapter07-jooq</module>
-        <module>chapter07-jooq-boot</module>
+       <!-- <module>chapter07-jooq</module>
+        <module>chapter07-jooq-boot</module>-->
+        <module>chapter08</module>
+        <module>chapter08-boot</module>
+        <module>chapter09</module>
+        <module>chapter09-boot</module>
+        <module>chapter10</module>
+        <module>chapter10-boot</module>
+        <module>chapter10-mongo</module>
+        <module>chapter10-mongo-boot</module>
+        <module>chapter11</module>
+        <module>chapter11-boot</module>
+        <module>chapter12</module>
     </modules>
 
     <dependencies>

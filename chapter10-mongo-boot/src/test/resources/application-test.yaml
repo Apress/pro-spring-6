@@ -1,0 +1,15 @@
+
+# Logging config
+logging:
+  pattern:
+    console: " %-5level: %class{0} - %msg%n"
+  level:
+    root: INFO
+    # org.springframework.boot: DEBUG
+    com.apress.prospring6.ten.boot: DEBUG
+    # org.springframework.orm.jpa: TRACE
+    # org.springframework.transaction: TRACE
+    # org.hibernate: DEBUG
+    # org.testcontainers: INFO
+
+

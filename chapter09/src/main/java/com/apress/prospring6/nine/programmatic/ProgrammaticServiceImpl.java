@@ -1,0 +1,62 @@
+/*
+Freeware License, some rights reserved
+
+Copyright (c) 2023 Iuliana Cosmina
+
+Permission is hereby granted, free of charge, to anyone obtaining a copy 
+of this software and associated documentation files (the "Software"), 
+to work with the Software within the limits of freeware distribution and fair use. 
+This includes the rights to use, copy, and modify the Software for personal use. 
+Users are also allowed and encouraged to submit corrections and modifications 
+to the Software for the benefit of other users.
+
+It is not allowed to reuse,  modify, or redistribute the Software for 
+commercial use in any way, or for a user's educational materials such as books 
+or blog articles without prior permission from the copyright holder. 
+
+The above copyright notice and this permission notice need to be included 
+in all copies or substantial portions of the software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS OR APRESS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+package com.apress.prospring6.nine.programmatic;
+
+import com.apress.prospring6.nine.repos.SingerRepo;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.support.TransactionTemplate;
+
+
+/**
+ * Created by iuliana.cosmina on 23/07/2022
+ */
+@Service
+public class ProgrammaticServiceImpl implements ProgrammaticService {
+
+    private final SingerRepo singerRepo;
+
+    private final TransactionTemplate transactionTemplate;
+
+    public ProgrammaticServiceImpl(SingerRepo singerRepo, TransactionTemplate transactionTemplate) {
+        this.singerRepo = singerRepo;
+        this.transactionTemplate = transactionTemplate;
+    }
+
+    @Override
+    public Long countSingers() {
+        return transactionTemplate.execute(transactionStatus -> singerRepo.countAllSingers());
+        /*
+         return transactionTemplate.execute(new TransactionCallback<Long>() {
+            @Override
+            public Long doInTransaction(TransactionStatus status) {
+               return singerRepo.countAllSingers();
+            }
+        });
+        */
+    }
+}

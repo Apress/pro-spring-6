@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    url: "jdbc:tc:mariadb:latest:///testdb?TC_INITSCRIPT=testcontainers/create-schema.sql"
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 10
+          fetch_size: 30
+        max_fetch_depth: 3
+        show-sql: true
+        format-sql: true
+        use_sql_comments: true
+        hbm2ddl:
+          auto: none
+
+# Logging config
+logging:
+  pattern:
+    console: " %-5level: %class{0} - %msg%n"
+  level:
+    root: INFO
+    # org.springframework.boot: DEBUG
+    com.apress.prospring6.ten.boot: DEBUG
+    # org.springframework.orm.jpa: TRACE
+    # org.springframework.transaction: TRACE
+    # org.hibernate: DEBUG
+    # org.testcontainers: INFO
+
+
