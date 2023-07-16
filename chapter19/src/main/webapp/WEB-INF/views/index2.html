@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head th:fragment="~{templates/layout :: pageTitle}">
+    <link rel="icon" type="image/png" th:href="@{/images/favicon.ico}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/bootstrap.min.css}">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title> SockJS Tester </title>
+    <link type="text/css" rel="stylesheet" th:with="cssStyle=${#themes.code('css.style')}" th:href="@{(${cssStyle})}" >
+    <link type="text/css" rel="stylesheet" th:href="@{/styles/general.css}" >
+    <script type="text/javascript" th:src="@{/js/sockjs-1.6.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-3.6.4.min.js}"></script>
+    <script type="text/javascript">
+        let ping;
+        let sockjs;
+
+        jQuery(function ($) {
+            function writePing(message) {
+                $('#pingOutput').append(message + '\n');
+            }
+
+            function writeMessage(message) {
+                $('#messageOutput').append(message + '\n')
+            }
+
+            $('#connect')
+                .click(function doConnect() {
+                    sockjs = new SockJS($("#target").val());
+
+                    sockjs.onopen = function (evt) {
+                        let badge=  $("#badgeStatus");
+                        badge.text("Connected");
+                        badge.attr('class','badge bg-success');
+
+                        setInterval(function () {
+                            if (sockjs !== "undefined") {
+                                sockjs.send("ping");
+                            }
+                        }, 3000);
+                    };
+
+                    sockjs.onclose = function (evt) {
+                        let badge=  $("#badgeStatus");
+                        badge.text("Disconnected");
+                        badge.attr('class','badge bg-light');
+                    };
+
+                    sockjs.onmessage = function (evt) {
+                        if (evt.data === "ping") {
+                            writePing(evt.data);
+                        } else {
+                            writeMessage('ECHO: ' + evt.data);
+                        }
+                    };
+                });
+
+            $('#disconnect')
+                .click(function () {
+                    if (typeof sockjs != 'undefined') {
+                        sockjs.close();
+                        sockjs = undefined;
+                    } else {
+                        alert("Not connected.");
+                    }
+                });
+
+            $('#send')
+                .click(function () {
+                    if (typeof sockjs != 'undefined') {
+                        sockjs.send($('#message').val());
+                    } else {
+                        alert("Not connected.");
+                    }
+                });
+        });
+    </script>
+</head>
+
+<body>
+<div class="container">
+    <header th:replace="~{templates/layout :: pageHeader}" ></header>
+
+    <header th:replace="~{templates/layout :: pageMenu}" ></header>
+
+    <section th:fragment="~{templates/layout :: pageContent}">
+        <div class="card border-success mb-3" style="max-width: 40rem; left:30px;">
+            <div class="card-header">WebSocket Tester</div>
+            <div class="row mb-1 m-sm-1">
+                <label for="target" th:text="Target" class="col-sm-4 form-label">FN:</label>
+                <div class="col-sm-8">
+                    <input type="text" id="target" size="40" th:value="${webSocket}" class="form-control"/>
+                </div>
+            </div>
+            <div class="row mb-1 m-sm-1">
+                <div class="col-sm-2"> <input type="submit" id="connect"  class="btn btn-success" value="Connect"/></div>
+                <div class="col-sm-3"><input type="submit" id="disconnect"  class="btn btn-danger" value="Disconnect"/></div>
+                <div class="col-sm-2"><span id="badgeStatus"></span></div>
+            </div>
+            <div class="row mb-1 m-sm-1">
+                <label for="message" th:text="Message" class="col-sm-4 form-label">FN:</label>
+                <div class="col-sm-8">
+                    <input type="text" id="message" value="" class="form-control"/>
+                </div>
+            </div>
+            <div class="row mb-1 m-sm-1">
+                <div class="col-sm-2"> <input type="submit" id="send"  value="Send" class="btn btn-dark"/></div>
+            </div>
+
+            <div class="row mb-1 m-sm-1">
+                <label for="messageOutput" th:text="Echo" class="col-sm-4 form-label">FN:</label>
+                <div class="col-sm-7">
+                    <pre><textarea id="messageOutput" rows="5" cols="25" class="form-control"></textarea></pre>
+                </div>
+            </div>
+
+            <div class="row mb-1 m-sm-1">
+                <label for="pingOutput" th:text="Ping" class="col-sm-4 form-label">FN:</label>
+                <div class="col-sm-7">
+                    <pre><textarea id="pingOutput" rows="5" cols="25" class="form-control"></textarea></pre>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer th:replace="~{templates/layout :: pageFooter}" ></footer>
+    </div>
+</body>
+</html>

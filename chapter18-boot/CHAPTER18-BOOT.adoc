@@ -1,0 +1,50 @@
+= Spring Boot Web REST Application With Actuator
+
+== The Database
+
+You can choose to install MariaDB locally following the instructions on the official site. But you can also use MariaDB in a docker container.
+
+Change directory to `chapter18-boot/docker-build` and run the following command to create the container image:
+
+[source]
+----
+docker build -t prospring6-mariadb:1.9 .
+----
+
+Run the following to start the container:
+
+[source]
+----
+docker run --name local-ch18-mariadb -d -p 3306:3306 prospring6-mariadb:1.9
+----
+
+Use the IntelliJ IDEA to create a connection to localhost with the credentials in the `Dockerfile` and feel free to query the tables as you write your Spring code.
+
+=== Installing a Container with Prometheus
+
+To compose metrics into useful reports and graphs we need an external tool called Prometheus. You can get that as a Docker plugin.
+
+Install Docker (https://www.docker.com/).
+
+Open a terminal and run:
+[source]
+----
+$ docker pull prom/prometheus
+----
+
+Once the image is downloaded, you can type `docker image ls` command to view the list of images present locally:
+[source]
+----
+$ docker image ls
+REPOSITORY                         TAG                 IMAGE ID            CREATED             SIZE
+prom/prometheus                    latest              d5b9d7ed160a        2 days ago          138MB
+----
+
+=== Run Prometheus
+
+Start the prometheus-boot-app. Then start the container.
+
+[source]
+----
+docker run -d --name=prometheus -p 9090:9090 -v /{your_workspace}/pro-spring-6/chapter18-boot/src/main/resources/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus --config.file=/etc/prometheus/prometheus.yml
+----

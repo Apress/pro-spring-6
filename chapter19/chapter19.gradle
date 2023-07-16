@@ -1,0 +1,43 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
+apply plugin: 'war'
+
+description 'Chapter 19:  Spring MVC WebSocket project'
+
+// we are using Spring Boot dependency management, but we configure Spring MVC in the classic manner - explicitly, with no Spring Boot "magic"
+dependencyManagement {
+    imports {
+        mavenBom SpringBootPlugin.BOM_COORDINATES
+    }
+}
+
+dependencies {
+    implementation "org.springframework:spring-webmvc"
+    implementation "org.springframework:spring-websocket"
+    implementation "org.springframework:spring-messaging"
+    implementation "jakarta.websocket:jakarta.websocket-api:2.1.0"
+
+    implementation "com.fasterxml.jackson.core:jackson-databind"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
+
+    implementation "org.thymeleaf:thymeleaf-spring6:$thymeleafVersion"
+    implementation "org.thymeleaf.extras:thymeleaf-extras-java8time:3.0.4.RELEASE"
+
+    compileOnly "jakarta.servlet:jakarta.servlet-api:$servletApiVersion"
+
+    implementation "ch.qos.logback:logback-classic:$logbackVersion"
+    implementation "jakarta.annotation:jakarta.annotation-api:$jakartaAnnotationVersion"
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+tasks.register('fatWar', War) {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    /*  Gradle Fat jars with multiple dependencies are affected by the same bug: https://issues.apache.org/jira/browse/MASSEMBLY-360 this statement fixes it */
+    manifest {
+        attributes "Created-By": "Iuliana Cosmina",
+                "Specification-Title": "Pro Spring 6 - Chapter 19"
+    }
+    from {configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    with war
+}

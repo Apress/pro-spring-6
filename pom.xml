@@ -79,8 +79,8 @@
         <module>chapter06-boot</module>
         <module>chapter07</module>
         <module>chapter07-boot</module>
-       <!-- <module>chapter07-jooq</module>
-        <module>chapter07-jooq-boot</module>-->
+        <module>chapter07-jooq</module>
+        <module>chapter07-jooq-boot</module>
         <module>chapter08</module>
         <module>chapter08-boot</module>
         <module>chapter09</module>
@@ -104,6 +104,11 @@
         <module>chapter16-graphql-boot</module>
         <module>chapter17</module>
         <module>chapter17-boot</module>
+        <module>chapter18</module>
+        <module>chapter18-boot</module>
+        <module>chapter19</module>
+        <module>chapter19-boot</module>
+        <module>chapter20-boot</module>
     </modules>
 
     <dependencies>

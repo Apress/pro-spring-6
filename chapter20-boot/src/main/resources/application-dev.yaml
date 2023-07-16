@@ -1,0 +1,30 @@
+server:
+  port: 8081
+  compression:
+    enabled: true
+  address: 0.0.0.0
+
+spring:
+  r2dbc:
+    url: r2dbc:mariadb://localhost:3306/musicdb
+    username: prospring6
+    password: prospring6
+  thymeleaf:
+    prefix: classpath:templates/
+    suffix: .html
+    mode: HTML
+    cache: false
+    check-template: false
+    reactive:
+      max-chunk-size: 8192
+
+# Logging config
+logging:
+  pattern:
+    console: "%-5level: %class{0} - %msg%n"
+  level:
+    root: INFO
+    org.springframework: INFO
+    org.springframework.boot: DEBUG
+    org.springframework.data.r2dbc: DEBUG
+    com.apress.prospring6.twenty: DEBUG

@@ -25,8 +25,8 @@ include 'chapter06'
 include 'chapter06-boot'
 include 'chapter07'
 include 'chapter07-boot'
-/*include 'chapter07-jooq'
-include 'chapter07-jooq-boot'*/
+include 'chapter07-jooq'
+include 'chapter07-jooq-boot'
 include 'chapter08'
 include 'chapter08-boot'
 include 'chapter09'
@@ -50,6 +50,11 @@ include 'chapter16-kotlin-boot'
 include 'chapter16-graphql-boot'
 include 'chapter17'
 include 'chapter17-boot'
+include 'chapter18'
+include 'chapter18-boot'
+include 'chapter19'
+include 'chapter19-boot'
+include 'chapter20-boot'
 
 println(' This project is a collection of simple code samples. It is meant to be used together with the ' +
         '"Pro Spring 6"  book' +

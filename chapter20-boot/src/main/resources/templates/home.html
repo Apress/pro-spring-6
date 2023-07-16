@@ -1,0 +1,57 @@
+<!--
+Created by IntelliJ IDEA.
+User: iulianacosmina
+Date: 2022-12-26
+-->
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{templates/layout :: pageTitle('Singers Home Page')}"></head>
+
+    <body>
+        <div class="container">
+            <header th:replace="~{templates/layout :: pageHeader}" ></header>
+
+            <header th:replace="~{templates/layout :: pageMenu}" ></header>
+
+            <section th:fragment="~{templates/layout :: pageContent}">
+                <script type="text/javascript" th:inline="javascript">
+                    /*<![CDATA[*/
+                    $(window).on( "load", function() {
+                        renderBeans.start();
+                    });
+                    $(window).on( "onbeforeunload", function() {
+                        renderBeans.stop();
+                    });
+                    let renderBeans = {
+                        source: new EventSource(/*[[@{|/beans|}]]*/) ,
+                        start: function () {
+                            this.source.addEventListener("message", function (event) {
+                                console.log(event);
+                                $("#beans").append('<li>'+ event.data +'</li>')
+                            });
+                            this.source.onerror = function () {
+                                this.source.close();
+                            };
+                        },
+                        stop: function() {
+                            this.source.close();
+                        }
+                    };
+                    /*]]>*/
+                </script>
+                <div class="card border-success mb-3" style="max-width: 40rem; left:30px;">
+                    <div class="card-header"> Reactive Application Beans: </div>
+                    <div class="row mb-1 m-sm-1">
+                        <div class="scrollable">
+                            <ul id="beans">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer th:replace="~{templates/layout :: pageFooter}" ></footer>
+        </div>
+    </body>
+</html>

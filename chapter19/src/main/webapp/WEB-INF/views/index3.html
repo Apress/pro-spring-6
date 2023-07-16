@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head th:fragment="~{templates/layout :: pageTitle}">
+    <link rel="icon" type="image/png" th:href="@{/images/favicon.ico}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/bootstrap.min.css}">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title> STOMP Tester </title>
+    <link type="text/css" rel="stylesheet" th:with="cssStyle=${#themes.code('css.style')}" th:href="@{(${cssStyle})}" >
+    <link type="text/css" rel="stylesheet" th:href="@{/styles/general.css}" >
+    <script type="text/javascript" th:src="@{/js/sockjs-1.6.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/stomp-1.7.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-3.6.4.min.js}"></script>
+    <script type="text/javascript">
+        let stomp;
+
+        function displayStockPrice(frame) {
+            let stocks = JSON.parse(frame.body);
+
+            $('#stock').empty();
+
+            for (let i in stocks) {
+                let stock = stocks[i];
+
+                $('#stock').append(
+                    $('<tr>').append(
+                        $('<td>').html(stock.code),
+                        $('<td>').html(stock.price.toFixed(2)),
+                        $('<td>').html(stock.dateFormatted)
+                    )
+                );
+            }
+        }
+
+        let connectCallback = function () {
+            stomp.subscribe('/topic/price', displayStockPrice);
+        };
+
+        let errorCallback = function (error) {
+            alert(error);
+        };
+
+        jQuery(function ($) {
+            $("#addStockButton").attr("disabled", true);
+
+            $('#connect')
+                .click(function doConnect() {
+                    stomp = Stomp.over(new SockJS($("#target").val()));
+                    stomp.connect("guest", "guest", connectCallback, errorCallback);
+                    let badge=  $("#badgeStatus");
+                    badge.text("Connected");
+                    badge.attr('class','badge bg-success');
+                    $("#addStockButton").attr('disabled', false);
+                });
+
+            $('#disconnect')
+                .click(function () {
+                    if (typeof stomp != 'undefined') {
+                        stomp.disconnect();
+                        stomp = undefined;
+                        let badge=  $("#badgeStatus");
+                        badge.text("Disconnected");
+                        badge.attr('class','badge bg-light');
+                        $("#addStockButton").attr('disabled', true);
+                    } else {
+                        alert("Not connected.");
+                    }
+                });
+
+            $('.addStockButton').click(function (e) {
+                e.preventDefault();
+                const stockStr = JSON.stringify({
+                    'code': $('.addStock .code').val(),
+                    'price': Number($('.addStock .price').val())
+                });
+                stomp.send('/app/addStock', {}, stockStr);
+                return false;
+            });
+        });
+    </script>
+</head>
+
+<body>
+<div class="container">
+    <header th:replace="~{templates/layout :: pageHeader}" ></header>
+
+    <header th:replace="~{templates/layout :: pageMenu}" ></header>
+
+    <section th:fragment="~{templates/layout :: pageContent}">
+        <div class="card border-success mb-3" style="max-width: 40rem; left:30px;">
+            <div class="card-header">STOMP Tester</div>
+            <div class="row mb-1 m-sm-1">
+                <label for="target" th:text="Endpoint" class="col-sm-4 form-label">FN:</label>
+                <div class="col-sm-8">
+                    <input type="text" id="target" size="40" th:value="${endpoint}" class="form-control"/>
+                </div>
+            </div>
+            <div class="row mb-1 m-sm-1">
+                <div class="col-sm-2"> <input type="submit" id="connect"  class="btn btn-success" value="Connect"/></div>
+                <div class="col-sm-3"><input type="submit" id="disconnect"  class="btn btn-danger" value="Disconnect"/></div>
+                <div class="col-sm-2"><span id="badgeStatus"></span></div>
+            </div>
+            <div class="row mb-1 m-sm-1">
+                <div class="card border-warning mb-3" style="max-width: 35rem;">
+                    <div class="card-header">Stock Details</div>
+                    <div class="card-body">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                            <tr>
+                                <th scope="col">Code</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Time</th>
+                            </tr>
+                            </thead>
+                            <tbody id="stock"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-1 m-sm-1 addStock">
+                <label for="code" th:text="Code" class="col-sm-4 form-label">FN:</label>
+                <div class="col-sm-8">
+                    <input type="text" id="code" value="" class="form-control code"/>
+                </div>
+            </div>
+            <div class="row mb-1 m-sm-1 addStock">
+                <label for="price2" th:text="Price" class="col-sm-4 form-label">FN:</label>
+                <div class="col-sm-8">
+                    <input type="text" id="price2" value="" class="form-control price"/>
+                </div>
+            </div>
+            <div class="row mb-1 m-sm-1 addStock">
+                <div class="col-sm-2"><input type="submit" id="addStockButton" class="btn btn-danger addStockButton" value="Add Stock"/></div>
+            </div>
+        </div>
+    </section>
+
+    <footer th:replace="~{templates/layout :: pageFooter}" ></footer>
+</div>
+</body>
+</html>

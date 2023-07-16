@@ -1,0 +1,19 @@
+GET http://localhost:8081/singer
+Accept: application/json
+Content-Type: application/json
+###
+
+GET http://localhost:8081/singer
+Accept: application/xml
+Content-Type: application/xml
+###
+
+GET http://localhost:8081/singer/1
+Accept: application/json
+Content-Type: application/json
+###
+
+GET http://localhost:8081/singer/1
+Accept: application/xml
+Content-Type: application/xml
+###

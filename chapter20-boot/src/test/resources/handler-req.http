@@ -1,0 +1,89 @@
+# /* 0 */
+GET http://localhost:8081/home
+
+# /* 1 */
+# show all to get the ID, expect all + OK (200)
+GET http://localhost:8081/handler/singer
+###
+
+# /* 4 */
+# creating a new singer, expect 1 + Created (201)
+POST http://localhost:8081/handler/singer
+Content-Type: application/json
+
+{
+  "firstName": "Andrew John",
+  "lastName": "Hozier-Byrne",
+  "birthDate": "1990-03-17"
+}
+###
+# Execute the previous request twice to check the error handling behaviour
+
+# /* 1 */
+# show all to get the ID, expect all + OK (200)
+GET http://localhost:8081/handler/singer
+###
+
+# /* 5 */
+# use the ID to edit the singer, expect 1 + OK (200)
+PUT  http://localhost:8081/handler/singer/47
+Content-Type: application/json
+
+{
+  "firstName": "Just",
+  "lastName": "Hozier",
+  "birthDate": "1990-03-17"
+}
+###
+
+# /* 5 */
+# try to edit a user that is not found in the database, expect badRequest(400) and "Failure to update user!"
+PUT  http://localhost:8081/handler/singer/500
+Content-Type: application/json
+
+{
+  "firstName": "Just",
+  "lastName": "Hozier",
+  "birthDate": "1990-03-17"
+}
+###
+
+# /* 3 */
+# use the ID to view just this one singer, expect 1 + OK(200)
+GET http://localhost:8081/handler/singer/47
+###
+
+# /* 2 */
+# use the ID to view delete this one singer, expect 0 + noContent(204)
+DELETE http://localhost:8081/handler/singer/47
+###
+
+# /* 3 */
+# use the ID to view a NOW non-exitent singer, expect 0 + notFound(404)
+GET http://localhost:8081/handler/singer/47
+###
+
+# /* 1 */
+# show all to make sure, expect all + OK (200)
+GET http://localhost:8081/handler/singer
+###
+
+# /* 6 */
+# Get all singers named 'John', expect 2 + OK (200)
+GET http://localhost:8081/handler/singer?name=John
+###
+
+# /* 6 */
+# Get all singers named 'Pedro', expect 0 + badRequest(400)
+GET http://localhost:8081/handler/singer?name=
+###
+
+# /* 7 */
+# Get singer named John Mayer, expect 1 + OK (200)
+GET http://localhost:8081/handler/singer?fn=John&ln=Mayer
+###
+
+# /* 7 */
+# Get singer named John Mayer, expect 0 + OK (200)
+GET http://localhost:8081/handler/singer?fn=Pedro&ln=Pascal
+###
