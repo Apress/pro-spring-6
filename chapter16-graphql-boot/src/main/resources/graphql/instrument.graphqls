@@ -1,0 +1,12 @@
+type Instrument {
+    name: ID!
+}
+
+extend type Query {
+    instruments: [Instrument]
+    instrumentsCount: Int!
+}
+
+extend type Mutation {
+    newInstrument(name: String!): Instrument
+}

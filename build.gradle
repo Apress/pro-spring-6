@@ -14,6 +14,10 @@ buildscript {
         classpath 'io.spring.gradle:dependency-management-plugin:1.1.1'
         classpath 'com.github.ben-manes:gradle-versions-plugin:0.42.0' // https://github.com/ben-manes/gradle-versions-plugin/
         classpath 'org.springframework.boot:spring-boot-gradle-plugin:3.1.1'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.22'  // kotlin version
+        classpath 'org.jetbrains.kotlin:kotlin-allopen:1.8.22'
+        classpath 'org.jetbrains.kotlin:kotlin-noarg:1.8.22'
+        classpath 'org.graalvm.buildtools.native:org.graalvm.buildtools.native.gradle.plugin:0.9.22'
     }
 }
 
@@ -43,6 +47,7 @@ ext {
 
     thymeleafVersion = "3.1.1.RELEASE"
     servletApiVersion="6.0.0"
+    restAssuredVersion="5.3.0"
 }
 
 defaultTasks 'clean', 'build'

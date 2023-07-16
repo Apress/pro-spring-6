@@ -1,0 +1,26 @@
+type Award {
+    id: ID!
+    year: Int!
+    category: String!
+    itemName: String!
+    awardName: String!
+    singer: Singer
+}
+
+input AwardInput {
+    year: Int!
+    category: String!
+    itemName: String!
+    awardName: String!
+    singerId: Int!
+}
+
+extend type Query {
+    awards: [Award]
+    awardsBySinger(singerId: ID!): [Award]!
+    awardsCount: Int!
+}
+
+extend type Mutation {
+    newAward(award: AwardInput) : Award!
+}

@@ -1,0 +1,39 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /
+  compression:
+    enabled: true
+  address: 0.0.0.0
+
+spring:
+  datasource:
+    driverClassName: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_SCHEMA:musicdb}?useSSL=false
+    username: ${DB_USER:prospring6}
+    password: ${DB_PASS:prospring6}
+    hikari:
+      maximum-pool-size: 25
+  jpa:
+    generate-ddl: false
+    properties:
+      hibernate:
+        naming:
+          physical-strategy: com.apress.prospring6.sixteen.boot.CustomPhysicalNamingStrategy
+        jdbc:
+          batch_size: 10
+          fetch_size: 30
+        max_fetch_depth: 3
+        hbm2ddl:
+          auto: none
+    open-in-view: false # this causes the LazyInitializationException
+
+# Logging config
+logging:
+  pattern:
+    console: "%-5level: %class{0} - %msg%n"
+  level:
+    root: INFO
+    org.springframework: INFO
+    com.apress.prospring6.sixteen.boot: INFO
+    #sql: debug

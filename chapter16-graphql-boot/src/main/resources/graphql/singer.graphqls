@@ -1,0 +1,31 @@
+# Root
+type Query {
+    singers: [Singer]!
+    singerById(id: ID!) : Singer
+    singersCount: Int!
+}
+
+type Mutation {
+    newSinger(singer: SingerInput) : Singer!
+    updateSinger(id: ID!, singer: SingerInput): Singer!
+    deleteSinger(id: ID!): ID!
+}
+
+type Singer {
+    id: ID!
+    firstName: String!
+    lastName: String!
+    pseudonym: String
+    genre: String
+    birthDate: String
+    awards: [Award]
+    instruments: [Instrument]
+}
+
+input SingerInput {
+    firstName: String!
+    lastName: String!
+    pseudonym: String
+    genre: String
+    birthDate: String
+}

@@ -1,0 +1,46 @@
+<!--
+Created by IntelliJ IDEA.
+User: iulianacosmina
+Date: 2019-07-14
+Time: 11:43
+-->
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+  <head th:replace="~{templates/layout :: pageTitle('Edit Singer Page')}"></head>
+
+  <body>
+    <div class="container"> <!-- container -->
+      <header th:replace="~{templates/layout :: pageHeader}" ></header>
+
+      <header th:replace="~{templates/layout :: pageMenu}" ></header>
+
+      <section th:fragment="~{templates/layout :: pageContent}">
+        <div class="content"> <!-- content -->
+
+
+          <h4 th:text="#{command.update.photo} + ' for ' + ${singer.firstName} + ' ' + ${singer.lastName}">EDIT</h4>
+
+          <div class="container col-lg-12">
+            <form name="update_photo" th:action="@{/singer/} + ${singer.id} + '/photo'" method="POST" enctype="multipart/form-data" class="col p-3">
+                <div class="form-group row mb-1">
+                  <div class="col-sm-10">
+                    <input type="file" name="file" id="file" class="form-control"/>
+                  </div>
+                </div>
+                <div class="form-group align-items-md-end">
+                  <input type="submit" th:value="#{command.upload}" id="submit" class="btn btn-primary"/>
+                </div>
+            </form>
+            <div class="form-group mb-1 align-items-end">
+              <a href="#" th:href="@{/singer/} + ${singer.id}" th:text="#{command.cancel}"> CANCEL</a>
+            </div>
+          </div>
+
+        </div> <!-- content -->
+      </section>
+
+      <footer th:replace="~{templates/layout :: pageFooter}" ></footer>
+    </div> <!-- container -->
+  </body>
+</html>

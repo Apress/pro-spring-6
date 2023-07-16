@@ -45,6 +45,11 @@ include 'chapter14'
 include 'chapter14-boot'
 include 'chapter15'
 include 'chapter15-boot'
+include 'chapter16-native-boot'
+include 'chapter16-kotlin-boot'
+include 'chapter16-graphql-boot'
+include 'chapter17'
+include 'chapter17-boot'
 
 println(' This project is a collection of simple code samples. It is meant to be used together with the ' +
         '"Pro Spring 6"  book' +

@@ -1,0 +1,7 @@
+GET http://localhost:8081/singer
+###
+
+
+GET http://localhost:8081/singer/1
+Accept: application/json
+###

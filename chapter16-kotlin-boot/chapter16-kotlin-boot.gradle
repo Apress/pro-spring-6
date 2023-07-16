@@ -1,0 +1,39 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+apply plugin: 'org.jetbrains.kotlin.jvm'
+apply plugin: 'org.jetbrains.kotlin.plugin.spring'
+apply plugin: 'org.jetbrains.kotlin.plugin.jpa'
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
+    implementation 'org.jetbrains.kotlin:kotlin-reflect'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib'
+
+    implementation "com.zaxxer:HikariCP:$hikariVersion"
+    runtimeOnly "org.mariadb.jdbc:mariadb-java-client"
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation "org.testcontainers:mariadb:$testcontainersVersion"
+    testImplementation "org.testcontainers:junit-jupiter:$testcontainersVersion"
+}
+
+tasks.withType(KotlinCompile).configureEach {
+    compileKotlin.compilerOptions.freeCompilerArgs.add('-Xjsr305=strict')
+    compileKotlin.compilerOptions.jvmTarget.set(JvmTarget.JVM_19)
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+    compileTestKotlin.compilerOptions.jvmTarget.set(JvmTarget.JVM_19)
+}
+
+bootJar {
+    manifest {
+        attributes 'Start-Class': 'com.apress.prospring6.sixteen.boot.Chapter16Application'
+    }
+}

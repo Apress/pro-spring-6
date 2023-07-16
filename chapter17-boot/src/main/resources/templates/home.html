@@ -1,0 +1,25 @@
+<!--
+Created by IntelliJ IDEA.
+User: iulianacosmina
+Date: 2022-12-26
+-->
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{templates/layout :: pageTitle('Singers Home Page')}"></head>
+
+    <body>
+        <div class="container">
+            <header th:replace="~{templates/layout :: pageHeader}" ></header>
+
+            <header th:replace="~{templates/layout :: pageMenu}" ></header>
+
+            <section th:fragment="~{templates/layout :: pageContent}">
+                <p th:text="#{home.caption}" ></p>
+                <p th:text="${message}" ></p>
+            </section>
+
+            <footer th:replace="~{templates/layout :: pageFooter}" ></footer>
+        </div>
+    </body>
+</html>

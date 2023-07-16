@@ -32,6 +32,7 @@
         <maven-shade-plugin.version>3.5.0</maven-shade-plugin.version>
         <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
         <jupiter.version>5.9.3</jupiter.version>
+        <kotlin.version>1.8.22</kotlin.version>
 
         <servletApi.version>6.0.0</servletApi.version>
         <thymeleaf.version>3.1.1.RELEASE</thymeleaf.version>
@@ -52,7 +53,11 @@
         <hibernate.validator.version>8.0.1.Final</hibernate.validator.version>
         <mongo.driver.version>4.9.1</mongo.driver.version>
 
+        <spring-native.version>0.9.19</spring-native.version>
+        <tomcat.version>10.1.5</tomcat.version>
+
         <!-- others -->
+        <restAssured.version>5.3.0</restAssured.version>
         <h2.version>2.1.214</h2.version>
         <jooq.version>3.18.5</jooq.version>
         <aspectj.version>1.9.9.1</aspectj.version>
@@ -94,6 +99,11 @@
         <module>chapter14-boot</module>
         <module>chapter15</module>
         <module>chapter15-boot</module>
+        <module>chapter16-kotlin-boot</module>
+        <module>chapter16-native-boot</module>
+        <module>chapter16-graphql-boot</module>
+        <module>chapter17</module>
+        <module>chapter17-boot</module>
     </modules>
 
     <dependencies>

@@ -1,0 +1,58 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
+apply plugin: 'war'
+
+description 'Chapter 17:  Spring MVC Thymeleaf with security'
+
+// we are using Spring Boot dependency management, but we configure Spring MVC in the classic manner - explicitly, with no Spring Boot "magic"
+dependencyManagement {
+    imports {
+        mavenBom SpringBootPlugin.BOM_COORDINATES
+    }
+}
+
+dependencies {
+    implementation "org.springframework.security:spring-security-web"
+    implementation "org.springframework.security:spring-security-config"
+    implementation 'org.springframework:spring-webmvc'
+
+    implementation "org.thymeleaf:thymeleaf-spring6:$thymeleafVersion"
+    implementation "org.thymeleaf.extras:thymeleaf-extras-java8time:3.0.4.RELEASE"
+    implementation "org.thymeleaf.extras:thymeleaf-extras-springsecurity6:$thymeleafVersion"
+
+    implementation 'org.springframework.data:spring-data-jpa'
+    implementation "org.hibernate.orm:hibernate-core:$hibernateVersion"
+
+    implementation "org.glassfish:jakarta.el:5.0.0-M1"
+    implementation "org.hibernate.validator:hibernate-validator:$hibernateValidatorVersion"
+
+    implementation "ch.qos.logback:logback-classic:$logbackVersion"
+    implementation "jakarta.annotation:jakarta.annotation-api:$jakartaAnnotationVersion"
+
+    implementation "com.zaxxer:HikariCP:$hikariVersion"
+    runtimeOnly "org.mariadb.jdbc:mariadb-java-client"
+
+    compileOnly "jakarta.servlet:jakarta.servlet-api:$servletApiVersion"
+
+    implementation "commons-io:commons-io:2.11.0"
+
+    testImplementation 'org.springframework:spring-test'
+
+    //testImplementation "org.springframework.security:spring-security-test"
+    testImplementation "io.rest-assured:rest-assured:$restAssuredVersion"
+    testImplementation "jakarta.servlet:jakarta.servlet-api:$servletApiVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine"
+    testImplementation "org.testcontainers:mariadb:$testcontainersVersion"
+    testImplementation "org.testcontainers:junit-jupiter:$testcontainersVersion"
+}
+
+tasks.register('fatWar', War) {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    /*  Gradle Fat jars with multiple dependencies are affected by the same bug: https://issues.apache.org/jira/browse/MASSEMBLY-360 this statement fixes it */
+    manifest {
+        attributes "Created-By": "Iuliana Cosmina",
+                "Specification-Title": "Pro Spring 6 - Chapter 17"
+    }
+    from {configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    with war
+}

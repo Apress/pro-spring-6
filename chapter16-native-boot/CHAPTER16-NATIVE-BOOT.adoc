@@ -1,0 +1,52 @@
+= Spring Native application
+
+== The Database
+
+You can choose to install MariaDB locally following the instructions on the official site. But you can also use MariaDB in a docker container.
+
+Change directory to `chapter16-native-boot/docker-build` and run the following command to create the container image:
+
+[source]
+----
+docker build -t prospring6-mariadb:1.7 .
+----
+
+Run the following to start the container:
+
+[source]
+----
+docker run --name local-ch16-mariadb -d -p 3306:3306 prospring6-mariadb:1.7
+----
+
+Use the IntelliJ IDEA to create a connection to localhost with the credentials in the `Dockerfile` and feel free to query the tables as you write your Spring code.
+
+== The Native Image
+
+This project requires Docker installed locally. The following commands(which will take a while to execute) will create a natively compiled application which can be ran and invoked via the command line.
+
+
+[source, shell]
+----
+mvn spring-boot:build-image
+# or
+gradle bootBuildImage
+----
+
+Create a docker container image with the native Spring Boot application.
+
+== Run the Native Image
+
+Retrieve the DB host IP by running:
+[source, shell]
+----
+docker inspect local-mariadb | grep IPAddress  # assuming 172.17.0.2
+----
+
+Run the native application
+
+[source, shell]
+----
+docker run --name prospring6-native -e DB_HOST=172.17.0.2 -d -p 8081:8081 prospring6-gradle-native:1.0
+# or
+docker run --name prospring6-native -e DB_HOST=172.17.0.2 -d -p 8081:8081 prospring6-gradle-native:1.0
+----
