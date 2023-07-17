@@ -34,7 +34,7 @@ NOTE: For easier Java versions management, if you are using a Linux/macOS I also
 
 [source, shell]
 ----
-sdk install java 19.0.1-amzn
+> sdk install java 19.0.1-amzn
 ----
 
 
@@ -46,20 +46,20 @@ defaultTasks 'clean', 'build'
 ----
 This means that you do not have to specify those tasks when building the project from the terminal. Build it from scratch using the Gradle wrapper:
 ----
-./gradlew
+> ./gradlew
 ----
 Or if you have Gradle installed locally, open a terminal and just run:
 ----
-gradle
+> gradle
 ----
 
 If you want to skip the tests (build time will be shorter) run the wrapper with the following arguments:
 ----
-./gradlew -x test
+> ./gradlew -x test
 ----
 Or run Gradle with the following arguments
 ----
-gradle -x test
+> gradle -x test
 ----
 
 === Using Maven
@@ -70,18 +70,18 @@ The project is configured with the following default Maven goals:
 ----
 This means that you do not have to specify those goals when building the project from the terminal. Build it from scratch using the Maven wrapper:
 ----
-./mvnw
+> ./mvnw
 ----
 Or if you have Gradle installed locally, open a terminal and just run:
 ----
-mvn
+> mvn
 ----
 If you want to skip the tests run the wrapper with the following arguments:
 ----
-./mvnw -DskipTests
+> ./mvnw -DskipTests
 ----
 Or run Gradle with the following arguments
 ----
-maven -DskipTests
+> mvn -DskipTests
 ----
 
