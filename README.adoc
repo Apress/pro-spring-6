@@ -72,7 +72,7 @@ This means that you do not have to specify those goals when building the project
 ----
 > ./mvnw
 ----
-Or if you have Gradle installed locally, open a terminal and just run:
+Or if you have Maven installed locally, open a terminal and just run:
 ----
 > mvn
 ----
@@ -80,7 +80,7 @@ If you want to skip the tests run the wrapper with the following arguments:
 ----
 > ./mvnw -DskipTests
 ----
-Or run Gradle with the following arguments
+Or run Maven with the following arguments
 ----
 > mvn -DskipTests
 ----
