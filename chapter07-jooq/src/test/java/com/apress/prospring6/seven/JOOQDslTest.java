@@ -79,7 +79,7 @@ public class JOOQDslTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(JOOQDslTest.class);
 
     @Container
-    static MariaDBContainer<?> mariaDB = new MariaDBContainer<>("mariadb:11.1-rc");
+    static MariaDBContainer<?> mariaDB = new MariaDBContainer<>("mariadb:11.1.2");
 
     @DynamicPropertySource // this does the magic
     static void setUp(DynamicPropertyRegistry registry) {

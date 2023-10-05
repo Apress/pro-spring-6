@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: "jdbc:tc:mariadb:11.1-rc:///testdb?TC_INITSCRIPT=testcontainers/create-schema.sql"
+    url: "jdbc:tc:mariadb:11.1.2:///testdb?TC_INITSCRIPT=testcontainers/create-schema.sql"
   jpa:
     properties:
       hibernate:

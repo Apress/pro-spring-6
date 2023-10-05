@@ -64,7 +64,7 @@ public class SimpleProgrammingTest {
                agesum += p.getRight();
            }
         }
-        assertEquals(302, agesum); // depending when you are running this test it might fail, now in April 2023 it passes ;)
+        assertEquals(303, agesum); // depending when you are running this test it might fail, now in October 2023 it passes ;)
     }
 
     @Test
@@ -76,7 +76,7 @@ public class SimpleProgrammingTest {
                 .reduce(Integer:: sum) // Optional<Integer>
                  .orElseThrow(() -> new RuntimeException("Something went wrong!"));
 
-         assertEquals(302, agesum); // depending when you are running this test it might fail, now in April 2023 it passes ;)
+         assertEquals(303, agesum); // depending when you are running this test it might fail, now in October 2023 it passes ;)
     }
 
     @Test

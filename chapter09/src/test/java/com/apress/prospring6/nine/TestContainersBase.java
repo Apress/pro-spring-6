@@ -38,7 +38,7 @@ import org.testcontainers.junit.jupiter.Container;
 public class TestContainersBase {
 
     @Container
-    static MariaDBContainer<?> mariaDB = new MariaDBContainer<>("mariadb:11.1-rc");
+    static MariaDBContainer<?> mariaDB = new MariaDBContainer<>("mariadb:11.1.2");
 
     @DynamicPropertySource // this does the magic
     static void setUp(DynamicPropertyRegistry registry) {

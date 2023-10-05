@@ -12,7 +12,7 @@ NOTE: Please don't skip reading this document https://imgflip.com/i/7sn8ut[befor
 
 *Release v6.0* corresponds to the code in the second edition of the published book, without corrections or updates. There have been small changes in the project configuration files to provide a more stable and a more up-to-date build.
 
-This project was built successfully with *JDK 19*, Gradle *8.3*/ Maven *3.9.3*. The syntax is specific to Java versions up to and including 17.
+This project was built successfully with *JDK 19*, Gradle *8.4*/ Maven *3.9.4*. The syntax is specific to Java versions up to and including 17.
 
 NOTE: If you want to build it with *JDK 17*, modify the Maven/Gradle configuration files and edit all Java versions references.
 

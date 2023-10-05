@@ -73,7 +73,7 @@ public class StoredFunctionV1Test {
     public static class TestContainersConfig {
         private static final Logger LOGGER = LoggerFactory.getLogger(TestContainersConfig.class);
 
-        MariaDBContainer<?> mariaDB = new MariaDBContainer<>("mariadb:11.1-rc");
+        MariaDBContainer<?> mariaDB = new MariaDBContainer<>("mariadb:11.1.2");
 
         @PostConstruct
         void initialize() {

@@ -2,16 +2,25 @@
 
 Hi guys, I am really thankful to all of you that have bought the book and have contributed to finding mistakes in it and in the code, and asking questions about details that seem unclear.
 
-'''
-
-On **page xx** [Summary of error]:
-
-Details of error here. Highlight key pieces in **bold**.
+== Chapter 4: Advanced Spring Configuration and Spring Boot
 
 '''
 
-On **page xx** [Summary of error]:
+On **page 156** the output snippets at the bottom of the page. This was caused by a wrong import statement in the code. The import has now been corrected and the expected outputs are:
 
-Details of error here. Highlight key pieces in **bold**.
+Running the `ProfileDemo` class with the JVM `-Dspring.profiles.active="kindergarten"` argument produces the following output:
+```
+DEBUG: AbstractEnvironment - Activating profiles [kindergarten]
+INFO : ProfileDemo - Food: Milk
+INFO : ProfileDemo - Food: Biscuits
+```
+This is exactly what the implementation of the kindergarten provider will produce for the lunch set. Now change the profile argument from the previous listing to high school (`-Dspring.profiles.active="highschool"`), and the output will change to the following:
 
+```
+DEBUG: AbstractEnvironment - Activating profiles [highschool]
+INFO : ProfileDemo - Food: Coke
+INFO : ProfileDemo - Food: Hamburger
+INFO : ProfileDemo - Food: Fries
+```
+(Submitted by _Ahmed Hadaka_)
 '''

@@ -1,8 +1,8 @@
 spring:
   datasource:
     # use this with @Sql config on class Chapter6ApplicationV2Test
-    # url: "jdbc:tc:mariadb:11.1-rc:///musicdb"
-    url: "jdbc:tc:mariadb:11.1-rc:///testdb?TC_INITSCRIPT=testcontainers/create-schema.sql"
+    # url: "jdbc:tc:mariadb:11.1.2:///musicdb"
+    url: "jdbc:tc:mariadb:11.1.2:///testdb?TC_INITSCRIPT=testcontainers/create-schema.sql"
 
 
 # Logging config

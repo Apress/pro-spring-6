@@ -1,5 +1,5 @@
 # Enable auto-env through the sdkman_auto_env config
 # Add key=value pairs of SDKs to use below
-java=19.0.1-amzn
-gradle=8.3
-maven=3.9.3
+java=19.0.2-amzn
+gradle=8.4
+maven=3.9.4
