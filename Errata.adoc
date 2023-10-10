@@ -2,25 +2,85 @@
 
 Hi guys, I am really thankful to all of you that have bought the book and have contributed to finding mistakes in it and in the code, and asking questions about details that seem unclear.
 
+== Chapter 3: Introducing IoC and DI in Spring
+
+'''
+
+On **page 49**, in the note in the middle of the page, in the first sentence, there is a typo.
+
+Original sentence:
+
+`You might notice that the interface and class in this example have *np* type accessor.`
+
+Correction:
+
+`You might notice that the interface and class in this example have *no* type accessor.`
+
+(Submitted by _Albert Attard_)
+
+'''
+
+On *page 66* the output in Listing 3-19 should be:
+
+[source, log]
+----
+Name: John Mayer
+Age: 40
+Age in Seconds: 1241401112
+Height: 1.92
+Is Developer?: false
+----
+
+(Submitted by _Albert Attard_)
+
+'''
+
+On *page 84* there is a mistake in the paragraph before the `Explicit Bean Name Section`.
+
+`context.getBeansOfType(String.class)` should be `context.getBeansOfType(SimpleBean.class)`
+
+(Submitted by _Albert Attard_)
+
+'''
+
+On *page 86* the type for the `value()` and `name()` methods should be `String[]` as defined in the https://github.com/spring-projects/spring-framework/blob/main/spring-context/src/main/java/org/springframework/context/annotation/Bean.java[ `@Bean` annotation source code].
+
+(Submitted by _Albert Attard_)
+
+'''
+
+On *page 86*, in code Listing 3-49 and before class `NonSingletonDemo` is mentioned instead of  class `Singer`.
+
+(Submitted by _Albert Attard_)
+
 == Chapter 4: Advanced Spring Configuration and Spring Boot
+
+'''
+On **page 143**, in Listing 4-28 the name of one of the message resource file shown in the comment is wrong. The listing shows `#labels_de_DE.properties`, should be `#labels_uk_UA.properties`.
+
+(Submitted by _Albert Attard_)
 
 '''
 
 On **page 156** the output snippets at the bottom of the page. This was caused by a wrong import statement in the code. The import has now been corrected and the expected outputs are:
 
 Running the `ProfileDemo` class with the JVM `-Dspring.profiles.active="kindergarten"` argument produces the following output:
-```
+
+[source, log]
+----
 DEBUG: AbstractEnvironment - Activating profiles [kindergarten]
 INFO : ProfileDemo - Food: Milk
 INFO : ProfileDemo - Food: Biscuits
-```
+----
 This is exactly what the implementation of the kindergarten provider will produce for the lunch set. Now change the profile argument from the previous listing to high school (`-Dspring.profiles.active="highschool"`), and the output will change to the following:
 
-```
+[source, log]
+----
 DEBUG: AbstractEnvironment - Activating profiles [highschool]
 INFO : ProfileDemo - Food: Coke
 INFO : ProfileDemo - Food: Hamburger
 INFO : ProfileDemo - Food: Fries
-```
+----
 (Submitted by _Ahmed Hadaka_)
+
 '''
