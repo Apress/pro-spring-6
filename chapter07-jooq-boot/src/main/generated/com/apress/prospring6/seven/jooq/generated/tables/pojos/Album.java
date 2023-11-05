@@ -117,6 +117,60 @@ public class Album implements Serializable {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        final Album other = (Album) obj;
+        if (this.id == null) {
+            if (other.id != null)
+                return false;
+        }
+        else if (!this.id.equals(other.id))
+            return false;
+        if (this.version == null) {
+            if (other.version != null)
+                return false;
+        }
+        else if (!this.version.equals(other.version))
+            return false;
+        if (this.singerId == null) {
+            if (other.singerId != null)
+                return false;
+        }
+        else if (!this.singerId.equals(other.singerId))
+            return false;
+        if (this.title == null) {
+            if (other.title != null)
+                return false;
+        }
+        else if (!this.title.equals(other.title))
+            return false;
+        if (this.releaseDate == null) {
+            if (other.releaseDate != null)
+                return false;
+        }
+        else if (!this.releaseDate.equals(other.releaseDate))
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
+        result = prime * result + ((this.version == null) ? 0 : this.version.hashCode());
+        result = prime * result + ((this.singerId == null) ? 0 : this.singerId.hashCode());
+        result = prime * result + ((this.title == null) ? 0 : this.title.hashCode());
+        result = prime * result + ((this.releaseDate == null) ? 0 : this.releaseDate.hashCode());
+        return result;
+    }
+
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Album (");
 
