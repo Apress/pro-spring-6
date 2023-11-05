@@ -117,6 +117,60 @@ public class Singer implements Serializable {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        final Singer other = (Singer) obj;
+        if (this.id == null) {
+            if (other.id != null)
+                return false;
+        }
+        else if (!this.id.equals(other.id))
+            return false;
+        if (this.version == null) {
+            if (other.version != null)
+                return false;
+        }
+        else if (!this.version.equals(other.version))
+            return false;
+        if (this.firstName == null) {
+            if (other.firstName != null)
+                return false;
+        }
+        else if (!this.firstName.equals(other.firstName))
+            return false;
+        if (this.lastName == null) {
+            if (other.lastName != null)
+                return false;
+        }
+        else if (!this.lastName.equals(other.lastName))
+            return false;
+        if (this.birthDate == null) {
+            if (other.birthDate != null)
+                return false;
+        }
+        else if (!this.birthDate.equals(other.birthDate))
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
+        result = prime * result + ((this.version == null) ? 0 : this.version.hashCode());
+        result = prime * result + ((this.firstName == null) ? 0 : this.firstName.hashCode());
+        result = prime * result + ((this.lastName == null) ? 0 : this.lastName.hashCode());
+        result = prime * result + ((this.birthDate == null) ? 0 : this.birthDate.hashCode());
+        return result;
+    }
+
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Singer (");
 

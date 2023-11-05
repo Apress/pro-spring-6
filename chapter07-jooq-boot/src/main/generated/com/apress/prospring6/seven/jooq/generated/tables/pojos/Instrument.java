@@ -44,6 +44,32 @@ public class Instrument implements Serializable {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        final Instrument other = (Instrument) obj;
+        if (this.instrumentId == null) {
+            if (other.instrumentId != null)
+                return false;
+        }
+        else if (!this.instrumentId.equals(other.instrumentId))
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((this.instrumentId == null) ? 0 : this.instrumentId.hashCode());
+        return result;
+    }
+
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Instrument (");
 
