@@ -38,7 +38,7 @@
                         badge.attr('class','badge bg-success');
 
                         setInterval(function () {
-                            if (websocket !== "undefined") {
+                            if (typeof websocket !== "undefined") {
                                 websocket.send("ping");
                             }
                         }, 3000);

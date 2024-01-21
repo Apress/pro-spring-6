@@ -2,9 +2,9 @@
 
 Hi guys, I am really thankful to all of you that have bought the book and have contributed to finding mistakes in it and in the code, and asking questions about details that seem unclear.
 
-== Chapter 3: Introducing IoC and DI in Spring
-
 '''
+
+== Chapter 3: Introducing IoC and DI in Spring
 
 On **page 49**, in the note in the middle of the page, in the first sentence, there is a typo.
 
@@ -20,7 +20,7 @@ Correction:
 
 '''
 
-On *page 60*, at the bottom of the page there is this statement The __ `@Autowired` annotation is not used to decorate the constructor... __, but Listing 13-3 shows the `@Autowired` annotation on the constructor. The warning box on the following page mentions that the annotation is redundant and why. However, keeping the annotation in Listing 13-3, even if not a grave technical error, might be confusing so this was an oversight on my part, that I will correct in the next edition.
+On *page 60*, at the bottom of the page there is this statement The __ `@Autowired` annotation is not used to decorate the constructor...__, but Listing 13-3 shows the `@Autowired` annotation on the constructor. The warning box on the following page mentions that the annotation is redundant and why. However, keeping the annotation in Listing 13-3, even if not a grave technical error, might be confusing so this was an oversight on my part, that I will correct in the next edition.
 
 (Submitted by _Nikolas Poniros_)
 
@@ -61,7 +61,6 @@ On *page 86*, in code Listing 3-49 and before class `NonSingletonDemo` is mentio
 
 == Chapter 4: Advanced Spring Configuration and Spring Boot
 
-'''
 On **page 106**, there is a small typo. _Learning more about the Spring aplication context..._ should be _Learning more about the Spring ap**p**lication context..._
 
 (Submitted by  _Nikolas Poniros_)
@@ -139,11 +138,8 @@ INFO : ProfileDemo - Food: Fries
 ----
 (Submitted by _Ahmed Hadaka_)
 
-'''
+== Chapter 5: Spring AOP
 
-=== Chapter 5: Spring AOP
-
-'''
 
 On **page 201** there is this statement:
 
@@ -162,7 +158,7 @@ _Notice that we have used the same advice class as in the static pointcut exampl
 
 This statement is somewhat confusing, mostly because of mentioning both static and dynamic advice. In future editions of this book, this statement should be changed to:
 
-_Notice that we have used the same advice class(`DefaultPointcutAdvisor`) as in the static pointcut example. However, in this example, only the first two calls to `sing({key})` should be advised. The dynamic check prevents the third call to `sing("E")` from being advised, while the static check prevents any method but `sing()` method from being advised, ignoring the arguments altogether. _
+_Notice that we have used the same advice class(`DefaultPointcutAdvisor`) as in the static pointcut example. However, in this example, only the first two calls to `sing({key})` should be advised. The dynamic check prevents the third call to `sing("E")` from being advised, while the static check prevents any method but `sing()` method from being advised, ignoring the arguments altogether._
 
 (Submitted by  _Nikolas Poniros_)
 
@@ -192,7 +188,7 @@ _The first thing to notice in this example is the set of three private `MethodMa
 
 Should be replaced with
 
-The first thing to notice in this example is the set of three private `MethodMatcher` implementations. `SingMethodMatcher` matches all methods that start with `*si*`._
+_The first thing to notice in this example is the set of three private `MethodMatcher` implementations. `SingMethodMatcher` matches all methods that start with `*si*`._
 
 (Submitted by  _Nikolas Poniros_)
 
@@ -200,19 +196,16 @@ The first thing to notice in this example is the set of three private `MethodMat
 
 On **page 230**, the following statement:
 
-_`TalkMethodMatcher` is very specific and matches only the `talk()` method. This `MethodMatcher` is combined with `ComposablePointcut` by using `intersection()` for the third round for invocations._
+`TalkMethodMatcher` _is very specific and matches only the `talk()` method. This `MethodMatcher` is combined with `ComposablePointcut` by using `intersection()` for the third round for invocations._
 
 Should be replaced with
 
-_`RestMethodMatcher` matches only methods with names ending in`st`. This `MethodMatcher` is combined with `ComposablePointcut` by using `intersection()` for the third round for invocations._
+`RestMethodMatcher` _matches only methods with names ending in`st`. This `MethodMatcher` is combined with `ComposablePointcut` by using `intersection()` for the third round for invocations._
 
 (Submitted by  _Nikolas Poniros_)
 
-'''
+== Chapter 6: Spring Data Access with JDBC
 
-=== Chapter 6: Spring Data Access with JDBC
-
-'''
 
 On **page 311**, the following paragraph:
 
@@ -226,7 +219,7 @@ _The `BatchSqlUpdate` class extends `SqlUpdate` and provides the capability to b
 
 '''
 
-On **page 322**, int the following paragraph:
+On **page 322**, in the following paragraph:
 
 _Any code that might distract you from the TestContainers central configuration was stripped away from the `StoredFunctionV1Test**Test**` class, the class where the `TestContainersConfig` is declared. It was declared inside the test class because this is the only place where it is used._
 
@@ -234,5 +227,334 @@ The class name `StoredFunctionV1TestTestTest`, should be `StoredFunctionV1TestTe
 
 (Submitted by  _Nikolas Poniros_)
 
+== Chapter 7: Spring with Hibernate
+
+Starting with **page 376**,  in the *Introducing jOOQ* section it is mentioned that jOOQ version 3.15 was not on Maven Central, and needed to be installed manually. After the book went into production however,version 3.18.5 of jOOQ became available on Maven Central, and so I updated the project setup, so manual installation is no longer necessary. This allowed me to keep the jOOQ submodules as part of the project build. This also means that every mention of manual installation in this section, is now deprecated and can be ignored.
+
+(Submitted by  _Nikolas Poniros_)
+
+== Chapter 8: Spring with JPA
+
+On **page 411**, the first paragraph in the **Updating Data ** section has a typo: statement `and as you've seen, *s* single method` should be `and as you've seen, *a* single method`
+
+(Submitted by  _Nikolas Poniros_)
+
+'''
+On **pages 414 and 415**, *Listing 8-25* has been the victim of a bad copy-paste. As a consequence the explanation does not match the listing. The actual content, that matches the explanation is shown below.
+
+*Listing 8-25.*  The `SingerServiceImpl.findAllByNativeQuery(..)` method.
+[source, Java, linenums]
+----
+package com.apress.prospring6.eight.service;
+// import statements omitted
+
+@Service("jpaSingerService")
+@Repository
+@Transactional
+public class SingerServiceImpl  implements SingerService {
+
+    public static final String ALL_SINGER_NATIVE_QUERY =
+            "select ID, FIRST_NAME, LAST_NAME, BIRTH_DATE, VERSION from SINGER";
+
+    @Override
+    public Stream<Singer> findAllByNativeQuery() {
+        return em.createNativeQuery(ALL_SINGER_NATIVE_QUERY, Singer.class).getResultList().stream();
+    }
+    // other methods and setup omitted
+}
+----
+
+(Submitted by  _Nikolas Poniros_)
+
 '''
 
+IMPORTANT: Starting with page 417, the version I have of *Chapter 8* differs from the one that was published. No idea how at least three people including myself, have missed this. I remember my technical reviewer asking for something else to be added instead of the _**Using the JPA Criteria API for a Criteria Query**_ section, and I did it, but somehow my version of the chapter is not the one that made it to production. This being said here is actual end of Chapter 8, that replaces the  _**Using the JPA Criteria API for a Criteria Query**_ and _**Summary**_
+
+=== End of Chapter 8
+
+The stored procedure used for this example, does the same thing as the stored function, given a singer `id` it extracts its first name. Since stored procedures do not return results, the result of the operation is stored into a procedure output parameter named `fn_res`. The SQL declaration of this procedure is shown in Listing 8-30.
+
+*Listing 8-30.*  Stored procedure SQL code.
+[source, Java, linenums]
+----
+CREATE OR REPLACE PROCEDURE getFirstNameByIdProc(IN in_id INT, OUT fn_res VARCHAR(60))
+BEGIN
+    SELECT first_name INTO fn_res FROM SINGER WHERE id = in_id;
+END
+----
+
+The `@NamedStoredProcedureQuery` annotation is used to declare a stored procedure query in *Chapter 7* as well, only the procedure is invoked using Hibernate session. Invoking a stored procedure configured with `@NamedStoredProcedureQuery` using a `EntityManager` is even more practical, since they are boh part of the Jakarta API. Listing 8-31 depicts the invocation of a stored procedure configured using `@NamedStoredProcedureQuery` with `EntityManager`.
+
+*Listing 8-31.*  Using `EntityManager` to invoke a Stored Procedure.
+[source, Java, linenums]
+----
+package com.apress.prospring6.eight.service;
+// other class details omitted
+
+/*
+@NamedStoredProcedureQuery(
+		name = "getFirstNameByIdProc",
+		procedureName = "getFirstNameByIdProc",
+		parameters = {
+				@StoredProcedureParameter(
+						name = "in_id",
+						type = Long.class,
+						mode = ParameterMode.IN
+				),
+				@StoredProcedureParameter(
+						name = "fn_res",
+						type = String.class,
+						mode = ParameterMode.OUT
+				)
+		}
+)
+*/
+public class SingerServiceImpl  implements SingerService {
+
+    @Override
+    public String findFirstNameByIdUsingProc(Long id) {
+        StoredProcedureQuery query = em.createNamedStoredProcedureQuery("getFirstNameByIdProc");
+        query.setParameter( "in_id", 1L );
+
+        query.execute();
+        return (String) query.getOutputParameterValue( "fn_res" );
+    }
+}
+----
+
+=== Summary of Chapter 8
+
+In this chapter, we covered the basic concepts of JPA and how to configure JPA’s `EntityManagerFactory` in Spring by using Hibernate as the persistence service provider. Then we discussed using JPA to perform basic database operations. Advanced topics included native queries and the strongly typed JPA Criteria API.
+
+The purpose of this chapter was to introduce you to JPA’s `EntityManagerFactory`, because from an architectural point of view, Hibernate's `SessionFactory` is an extension of it. Thus, the `SessionFactory` is also a JPA `EntityManagerFactory`, which means both contain the entity mapping metadata and allow you to create a Hibernate `Session` or a `EntityManager`.
+
+However, the `EntityManagerFactory` is the standard implementation, it is the same across all the implementations. This means, although not very likely, if you would like to change your JPA provider, in this case Hibernate, with some other persistence implementation (let's say Oracle TopLink), it is way easier to do it when your code is not tied to it.
+
+This being said, let's complete the whole picture of working with SQL databases in Spring, by learning about transactions, in the next chapter.
+
+== Chapter 9: Spring Transaction Management
+
+On **page 430**, at the bottom of the page there is a typo: the `hasSavepoint()` method is referred to as `hasSavePoint()`.
+(Submitted by  _Nikolas Poniros_)
+
+== Chapter 10: Spring Data with SQL and NoSQL Databases
+
+On **page 474 and 745**, the `@Modifying` annotation is referred to as `@Modified`.
+(Submitted by  _Nikolas Poniros_)
+
+'''
+
+On **page 487**, at the bottom of the page this statement:
+
+_With this configuration, what happens under the bonnet is that audit event listeners (instances of types implementing `org.hibernate.envers.event.spi.EnversListener`) are attached to persistence events: *add,* insert, update and delete._
+
+Should be replaced with:
+
+_With this configuration, what happens under the bonnet is that audit event listeners (instances of types implementing `org.hibernate.envers.event.spi.EnversListener`) are attached to persistence events: insert, update and delete._
+
+(Submitted by  _Nikolas Poniros_)
+
+== Chapter 11: Validation, Formatting and Type Conversion
+
+On **page 527**, at the end of section `Validation in Spring`, the paragraph should be split in two statements, by a `.`(dot).
+
+_The other one is via Spring’s support of JSR-349 (Bean Validation). We present both of them in the coming sections._
+
+(Submitted by  _Nikolas Poniros_)
+
+'''
+
+On **page 532**, there is a statement that is not grammatically correct.
+
+_Notice the body of the `supports(..)` method. The `BloggerWithAddress.class.isAssignableFrom(clazz)` statement validates that the target object is either an instance of `BloggerWithAddress`, *either* an instance of its superclass._
+
+Should be replaced with:
+
+_Notice the body of the `supports(..)` method. The `BloggerWithAddress.class.isAssignableFrom(clazz)` statement validates that the target object is either an instance of `BloggerWithAddress`, *or* an instance of its superclass._
+
+(Submitted by  _Nikolas Poniros_)
+
+== Chapter 12: Task Scheduling
+
+On **page 559** in Listing 12-10, there is a piece of code missing, from the `CarServiceImpl#updateCarAgeJob` that throws a `IllegalStateException` that is referenced in page 569.
+
+*Listing 12-10.* `CarServiceImpl` class.
+[source, java, linenums]
+----
+public class CarServiceImpl implements CarService {
+
+    @Scheduled(fixedDelay=10000)
+    public void updateCarAgeJob() {
+        //...
+        // randomly failing the task so we can add exception handling
+        if (System.nanoTime() % 5 == 0) {
+            throw new IllegalStateException("Task no " + Thread.currentThread().getName() + " is dead, dead dead...");
+        }
+        //...
+    }
+
+}
+----
+
+(Submitted by  _Nikolas Poniros_)
+
+'''
+
+On **page 564** in Listing 12-19, there is a piece of code missing, from the `AsyncServiceImpl#asyncTask` that throws a `IllegalStateException` that is referenced in page 569.
+
+
+*Listing 12-19.* `AsyncServiceImpl` bean class.
+[source, java, linenums]
+----
+public class AsyncServiceImpl implements AsyncService {
+
+    @Async
+    @Override
+    public void asyncTask() {
+        // ...
+        // randomly failing the task so we can test exception handling
+        if (System.nanoTime() % 5 == 0) {
+            throw new IllegalStateException("Task no " + Thread.currentThread().getName() + " is dead, dead dead...");
+        }
+        //..
+    }
+}
+----
+
+(Submitted by  _Nikolas Poniros_)
+
+== Chapter 13: Spring Remoting
+
+On **page 577**, there is a typo in the following statement:
+
+_The `Category` enum is used to categorize letters based on *tier* scope._
+
+Should be replaced with:
+
+_The `Category` enum is used to categorize letters based on *their* scope._
+
+(Submitted by  _Nikolas Poniros_)
+
+'''
+
+On **page 579**, highlighted text in Listing 13-14 is referenced, but there is no such text. Recommended correction: the `"mailbox"` property in Listing 13-14 should be in bold.
+
+(Submitted by  _Nikolas Poniros_)
+
+'''
+
+On **page 595**, small typo: `convertor` should be `converter`.
+
+(Submitted by  _Nikolas Poniros_)
+
+'''
+
+On **page 600**, small typo: `Not` should be `Now` at the beginning of the page.
+
+(Submitted by  _Nikolas Poniros_)
+
+== Chapter 14: Spring Remoting
+
+On **page 658**, small typo: `LONGBLOG` should be `LONGBLOB`.
+
+(Submitted by  _Nikolas Poniros_)
+
+'''
+On **page 660**, Listing 14-30 is missing the customized error messages. The correct Listing is shown below:
+
+*Listing 14-30* The Spring bean necessary to support file uploading.
+[source, Java, linenums]
+----
+package com.apress.prospring6.fourteen.util;
+import jakarta.validation.constraints.*;
+// other import statements omitted
+
+public class SingerForm {
+
+    @NotEmpty(message="{NotEmpty.firstName}")
+    @Size(min=2, max=30, message="{Size.firstName}")
+    private String firstName;
+
+    @NotEmpty(message="{NotEmpty.lastName}")
+    @Size(min=2, max=30, message="{Size.lastName}")
+    private String lastName;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate birthDate;
+
+     MultipartFile file;
+
+   // getters and setters omitted
+}
+----
+
+(Submitted by  _Nikolas Poniros_)
+
+'''
+
+On *page 661* , before *Listing 14-32*, there is a reference to Listing 14-28, should be 14-31.
+
+(Submitted by  _Nikolas Poniros_)
+
+
+== Chapter 15: Spring Remoting
+
+On *page 685* ,in the first paragraph there is a small typo: _there is no ned for_ should be replaced with _there is no need for_.
+
+(Submitted by  _Nikolas Poniros_)
+
+
+== Chapter 17: Spring Remoting
+
+
+On *page 783*, this statement in the first paragraph:
+
+_If for some reason you cannot use the Spring Security default schema, yo must provide a custom implementation of `UserDetailsService` that is responsible for retrieving users and authorities based on user provided data._
+
+must be changed with:
+
+_If for some reason you cannot use the Spring Security default schema, a custom implementation of `UserDetailsService` needs to be provided that is responsible for retrieving users and authorities based on user provided data._
+
+(Submitted by  _Nikolas Poniros_)
+
+== Chapter 18: Monitoring Spring Applications
+
+On *page 800*, in the statement under Figure 18-3 there a `{` that should not be there in the `findSinger(*{*"John", "Mayer")` operation.
+
+(Submitted by  _Nikolas Poniros_)
+
+
+== Chapter 19: Spring WebSocket Support
+
+
+On *page *829**, in *Listing 19-4*, the first `if (websocket !== "undefined")` statement should be `if (typeof websocket !== "undefined")`
+
+(Submitted by  _Nikolas Poniros_)
+
+'''
+
+On *page *835**, *Figure 19-4* caption starts with `SocketJS` instead of `SockJS`
+
+(Submitted by  _Nikolas Poniros_)
+
+
+== Chapter 20: Reactive Spring
+
+On *page 868* , statement _Two things need to be clarified about the sample in Listing 2-13:_, should be referencing Listing 20-13.
+
+(Submitted by  _Nikolas Poniros_)
+
+'''
+
+On *page 882* the `.`(dot) separating the two statements in the paragraph is missing:
+
+_However, what is interesting to test is a negative scenario For example when we try to create another John Mayer, as shown in Listing 20-22._
+
+Should be:
+_However, what is interesting to test is a negative scenario**.** For example when we try to create another John Mayer, as shown in Listing 20-22._
+
+(Submitted by  _Nikolas Poniros_)
+
+== Appendix A
+
+On **page 902 and 906**, the jOOQ submodules are mentioned as not being part of the build configuration, as per the old version of the project that used jOOQ 3.15. Feel free to ignore the notice box.

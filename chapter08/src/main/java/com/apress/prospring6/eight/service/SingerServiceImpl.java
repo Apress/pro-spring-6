@@ -95,6 +95,12 @@ public class SingerServiceImpl  implements SingerService {
         LOGGER.info("Singer with id: " + singer.getId()  + " deleted successfully");
     }
 
+    // for section "using a simple native query"
+   /* @SuppressWarnings({"unchecked"})
+    public Stream<Singer> findAllByNativeQuery() {
+        return em.createNativeQuery(ALL_SINGER_NATIVE_QUERY, Singer.class).getResultList().stream();
+    }
+    */
     @SuppressWarnings({"unchecked"})
     @Override
     public Stream<Singer> findAllByNativeQuery() {
