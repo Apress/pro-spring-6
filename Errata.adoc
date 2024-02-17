@@ -81,6 +81,11 @@ On **page 127**, there is a small typo. The caution box states that _Spring auto
 (Submitted by  _Nikolas Poniros_)
 
 '''
+On *page 135* , in Listing 4-22 the class `CustomPropertyEditorRegistrar` is part of the code but not used. Also, the `ValuesHolder` class should be a top class, at the same level with `DiverseValuesContainer`. The correct code is this link:./chapter04/src/main/java/com/apress/prospring6/four/DiverseValuesContainer.java[repo].
+
+(Submitted by _Amit Kumar_)
+
+'''
 On **page 141**, there is a small typo. There is a space between `ReloadableResource` and `BundleMessageSource` which messes up the actual class name. Should be `ReloadableResourceBundleMessageSource`.
 
 (Submitted by  _Nikolas Poniros_)
@@ -558,3 +563,5 @@ _However, what is interesting to test is a negative scenario**.** For example wh
 == Appendix A
 
 On **page 902 and 906**, the jOOQ submodules are mentioned as not being part of the build configuration, as per the old version of the project that used jOOQ 3.15. Feel free to ignore the notice box.
+
+(Submitted by  _Nikolas Poniros_)

@@ -35,6 +35,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
@@ -56,7 +57,7 @@ class ValuesHolder {
     List<String> stringList;
     InputStream inputStream;
 
-    public ValuesHolder(List<String> stringList) {
+    public ValuesHolder() {
         this.stringList = List.of("Mayer", "Psihoza", "Mazikeen");
         try {
             this.inputStream = new FileInputStream(
@@ -181,18 +182,6 @@ public class DiverseValuesContainer {
         LOGGER.info("Setting trim string: {}" , trimString);
         this.trimString = trimString;
     }
-
-    public static class CustomPropertyEditorRegistrar implements PropertyEditorRegistrar {
-        @Override
-        public void registerCustomEditors(PropertyEditorRegistry registry) {
-            SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
-            registry.registerCustomEditor(Date.class,
-                    new CustomDateEditor(dateFormatter, true));
-
-            registry.registerCustomEditor(String.class, new StringTrimmerEditor(true));
-        }
-    }
-
 
     public static void main(String... args) throws Exception {
         File baseDir = new File(System.getProperty("java.io.tmpdir"));
