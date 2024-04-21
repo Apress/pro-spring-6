@@ -59,7 +59,7 @@ class Singer {
 
 public class NonSingletonDemo {
 
-    private static Logger logger = LoggerFactory.getLogger(BeanNameGerneratorDemo.class);
+    private static Logger logger = LoggerFactory.getLogger(NonSingletonDemo.class);
 
     public static void main(String... args) {
         var ctx = new AnnotationConfigApplicationContext();

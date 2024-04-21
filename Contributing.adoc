@@ -32,4 +32,5 @@ The list below contains the list of people that have found errors in the previou
 * https://github.com/ahmed-hadaka[Ahmed Hadaka]
 * Albert Attard
 * Nikolas Poniros
+* Carlos Eduardo Villanueva
 * https://github.com/amitkriit[Amit Kumar]
