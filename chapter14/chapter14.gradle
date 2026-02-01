@@ -13,11 +13,12 @@ dependencyManagement {
 
 dependencies {
     implementation 'org.springframework:spring-webmvc'
+    implementation 'org.springframework.data:spring-data-jpa'
+
     implementation "org.thymeleaf:thymeleaf-spring6:$thymeleafVersion"
     implementation "org.thymeleaf.extras:thymeleaf-extras-java8time:3.0.4.RELEASE"
-    implementation 'org.springframework.data:spring-data-jpa'
-    implementation "org.hibernate.orm:hibernate-core:$hibernateVersion"
 
+    implementation "org.hibernate.orm:hibernate-core:$hibernateVersion"
     implementation "org.glassfish:jakarta.el:5.0.0-M1"
     implementation "org.hibernate.validator:hibernate-validator:$hibernateValidatorVersion"
 

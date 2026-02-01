@@ -27,16 +27,16 @@ SOFTWARE.
 */
 package com.apress.prospring6.four.boot.beans;
 
-        import com.apress.prospring6.two.decoupled.MessageProvider;
-        import com.apress.prospring6.two.decoupled.MessageRenderer;
-        import org.junit.jupiter.api.Test;
-        import org.springframework.beans.factory.annotation.Autowired;
-        import org.springframework.boot.test.context.SpringBootTest;
-        import org.springframework.context.ApplicationContext;
+import com.apress.prospring6.two.decoupled.MessageProvider;
+import com.apress.prospring6.two.decoupled.MessageRenderer;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
 
-        import static org.junit.jupiter.api.Assertions.assertAll;
-        import static org.junit.jupiter.api.Assertions.assertEquals;
-        import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Created by iuliana.cosmina on 03/04/2022

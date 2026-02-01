@@ -49,6 +49,15 @@ On *page 84* there is a mistake in the paragraph before the `Explicit Bean Name 
 
 '''
 
+On *page 81* there is a mistake in the fourth paragraph of the `Customizing Bean Naming Style`.
+
+`@Configuration` should be `@ComponentScan`.
+
+(Submitted by _Raj Sarkar_)
+
+
+'''
+
 On *page 86* the type for the `value()` and `name()` methods should be `String[]` as defined in the https://github.com/spring-projects/spring-framework/blob/main/spring-context/src/main/java/org/springframework/context/annotation/Bean.java[ `@Bean` annotation source code].
 
 (Submitted by _Albert Attard_)
@@ -211,7 +220,11 @@ Should be replaced with
 
 == Chapter 6: Spring Data Access with JDBC
 
+On **page 292**, the first paragraph after Listing 6-23, mentions the `assertTrue(..)` being used in the said listing. It should be `assertEquals()`.
 
+(Submitted by  _Raj Sarkar_)
+
+'''
 On **page 311**, the following paragraph:
 
 _Each time the `insertWithAlbum()` method is called, a new instance of `InsertSingerAlbum` is constructed because the `BatchSqlUpdate` class is not thread safe. Then we use it just like `SqlUpdate`. The main difference is that the `BatchSqlUpdate` class will queue up the insert operations and submit them to the database in batch._
@@ -502,14 +515,14 @@ On *page 661* , before *Listing 14-32*, there is a reference to Listing 14-28, s
 (Submitted by  _Nikolas Poniros_)
 
 
-== Chapter 15: Spring Remoting
+== Chapter 15: Spring REST Support
 
 On *page 685* ,in the first paragraph there is a small typo: _there is no ned for_ should be replaced with _there is no need for_.
 
 (Submitted by  _Nikolas Poniros_)
 
 
-== Chapter 17: Spring Remoting
+== Chapter 17: Securing Spring Applications
 
 
 On *page 783*, this statement in the first paragraph:

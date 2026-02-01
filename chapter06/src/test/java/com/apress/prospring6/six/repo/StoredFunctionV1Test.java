@@ -46,7 +46,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Created by iuliana.cosmina on 09/06/2022
- * This class uses the mariaDB container as a bean, which works if you implement the behaviour to stop it when the test context is destroyed.
+ * This class uses the mariaDB container as a bean,
+ * which works if you implement the behaviour to stop it when the test context is destroyed.
  */
 @SqlMergeMode(SqlMergeMode.MergeMode.MERGE)
 @Sql({ "classpath:testcontainers/drop-schema.sql", "classpath:testcontainers/create-schema.sql" }) // This works

@@ -54,6 +54,7 @@ public class HibernateConfig {
     public Properties hibernateProperties() {
         return new Properties();
     }
+
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
