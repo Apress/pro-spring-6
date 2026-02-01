@@ -41,6 +41,19 @@ Is Developer?: false
 
 '''
 
+On *page 72* the output in Listing 3-27 should be:
+
+[source, log]
+----
+song1: from parent ctx: Gravity
+song2: from parent ctx: Daughters
+song3: from child ctx: No Such Thing
+----
+
+(Submitted by https://github.com/XPD-Kasun[XPD-Kasun])
+
+'''
+
 On *page 84* there is a mistake in the paragraph before the `Explicit Bean Name Section`.
 
 `context.getBeansOfType(String.class)` should be `context.getBeansOfType(SimpleBean.class)`
