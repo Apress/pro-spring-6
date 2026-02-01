@@ -41,5 +41,4 @@ public interface AlbumRepo {
     Set<Album> save(Set<Album> albums) throws TitleTooLongException;
 
     Album save(Album album) throws TitleTooLongException;
-
 }

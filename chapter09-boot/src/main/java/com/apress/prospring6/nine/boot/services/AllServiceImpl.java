@@ -46,7 +46,7 @@ import java.util.stream.Stream;
  */
 @Service
 @Transactional
-public class AllServiceImpl implements AllService{
+public class AllServiceImpl implements AllService {
 
     private final SingerRepo singerRepo;
 

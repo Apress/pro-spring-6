@@ -169,7 +169,7 @@ public class HibernateTest {
         singer.setLastName("Waymon");
         singer.removeAlbum(album);
         int version =  singer.getVersion();
-        singerDao.save(singer);
+        singerDao.save(singer);z
 
         var nina = singerDao.findById(5L);
         assertEquals(version +1, nina.getVersion());

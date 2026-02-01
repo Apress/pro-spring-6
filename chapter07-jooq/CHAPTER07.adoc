@@ -31,4 +31,4 @@ At the moment this chapter is being written, version 3.16.7 is the most recent.
 Since this project depends on libraries that you manually have to install on your local system, it is taken out of the full build. To add it to the full build, remove the commented configuration snippet from the main `pom.xml` or `settings.gradle`, depending on the build tool you chose to use.
 
 
-*Note:* All Hibernate demo classes and test classes were kept and they now use entities under package
+*Note:* All Hibernate demo classes and test classes were kept, and they now use entities under package
